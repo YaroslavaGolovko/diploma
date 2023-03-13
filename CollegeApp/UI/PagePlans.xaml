@@ -1,0 +1,160 @@
+﻿<Page x:Class="CollegeApp.UI.PagePlans"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CollegeApp.UI"
+      mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" MinHeight="500"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="tblName" Text="Учебные планы" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBox Name="cmbSpecialities" FontFamily="Cambria" Width="200" Margin="0 0 30 0" IsReadOnly="True" IsEditable="True" Text="Специальность" Foreground="Gray" SelectionChanged="cmbSpecialities_SelectionChanged" DisplayMemberPath="Id"/>
+            <ComboBox Name="cmbQualifications" FontFamily="Cambria" Width="200" Margin="30 0 30 0" IsReadOnly="True" IsEditable="True" Text="Квалификация" Foreground="Gray" SelectionChanged="cmbQualifications_SelectionChanged" DisplayMemberPath="Name"/>
+            <ComboBox Name="cmbStartYear" FontFamily="Cambria" Width="200" Margin="30 0 30 0" IsReadOnly="True" IsEditable="True" Text="Год набора" Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged">
+                <TextBlock>2019</TextBlock>
+                <TextBlock>2020</TextBlock>
+                <TextBlock>2021</TextBlock>
+                <TextBlock>2022</TextBlock>
+            </ComboBox>
+            <ComboBox Name="cmbAcademicYear" FontFamily="Cambria" Width="200" Margin="30 0 0 0" IsReadOnly="True" IsEditable="True" Text="Учебный год" Foreground="Gray" SelectionChanged="cmbAcademicYear_SelectionChanged">
+                <TextBlock>2019-2020</TextBlock>
+                <TextBlock>2020-2021</TextBlock>
+                <TextBlock>2021-2022</TextBlock>
+                <TextBlock>2022-2023</TextBlock>
+                <TextBlock>2023-2024</TextBlock>
+                <TextBlock>2024-2025</TextBlock>
+                <TextBlock>2025-2026</TextBlock>
+            </ComboBox>
+            <ComboBox Name="cmbGroups" FontFamily="Cambria" Width="80" Margin="30 0 30 0" IsReadOnly="True" IsEditable="True" Text="Группа" Foreground="Gray" SelectionChanged="cmbGroups_SelectionChanged" DisplayMemberPath="Number"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnAddPlan" Content="Добавить учебный план" Click="btnAddPlan_Click" Margin="0 0 0 0"/>
+            <Button x:Name="btnAddRow" Content="Добавить дисциплину" Click="btnAddRow_Click" Margin="30 0 0 0" IsEnabled="False"/>
+            <Button x:Name="btnDeleteRow" Content="Удалить дисциплину" Click="btnDeleteRow_Click" Margin="30 0 0 0" IsEnabled="False"/>
+        </StackPanel>
+        <TextBlock x:Name="tblResult" FontFamily="Cambria" FontSize="30" Foreground="Gray" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Учебный план отсутствует в базе" Visibility="Hidden"/>
+        <DataGrid CurrentCellChanged="DGridPlan_CurrentCellChanged" Margin="10" Grid.Row="3" FontFamily="Cambria" x:Name="DGridPlan" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False"
+                  BorderBrush="LightGray" GridLinesVisibility="All" CanUserSortColumns="False" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Индекс" Binding="{Binding Index}" Width="100"/>
+                <DataGridTextColumn Header="Наименование дисциплины" Binding="{Binding Name}" Width="250">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn IsReadOnly="False" Width="1115">
+                    <DataGridTemplateColumn.Header>
+                        <StackPanel Orientation="Horizontal" Height="auto" Width="auto">
+                            <StackPanel Orientation="Vertical" Height="auto" Width="auto">
+                                <DataGridColumnHeader Content="Формы промежуточной аттестации" HorizontalContentAlignment="Center" BorderThickness="1" BorderBrush="LightGray"/>
+                                <StackPanel Orientation="Horizontal" Height="177">
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Экзамены" Width="177" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,1,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}"  FontSize="10" Content="Зачеты" Width="177" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Диффер. зачеты" Height="40" Width="177" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Курсовые проекты" Height="40" Width="177" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Курсовые работы" Height="40" Width="177" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Контрольные работы" Height="40" Width="177" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                    <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Другие" Height="40" Width="177" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="auto" Width="auto">
+                                <DataGridColumnHeader x:Name="textSemester1" Content="Семестр 1" HorizontalContentAlignment="Center" BorderThickness="0,1,1,1" BorderBrush="LightGray"/>
+                                <StackPanel Orientation="Vertical" Width="auto">
+                                    <DataGridColumnHeader Content="Нагрузка (в часах)" HorizontalContentAlignment="Center" BorderThickness="0,0,1,1" BorderBrush="LightGray"/>
+                                    <StackPanel Orientation="Horizontal" Width="auto">
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Максимальная" Width="140" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}"  FontSize="10" Content="Самостоятельная" Width="140" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Консультации" Height="40" Width="140" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Обязательная" Height="40" Width="140" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                        <StackPanel Orientation="Vertical" Width="auto" Height="140" VerticalAlignment="Top">
+                                            <DataGridColumnHeader Content="в том числе" FontSize="10" HorizontalContentAlignment="Center" Height="20" Padding="0" BorderThickness="0,0,1,1" BorderBrush="LightGray" Background="Transparent"/>
+                                            <StackPanel Orientation="Horizontal" Width="auto">
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Лекции, уроки" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Пр. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Лаб. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Семинар. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Курс. проектирования" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" Content="Индивид. проект" FontSize="10" Height="40" Background="Transparent" HorizontalContentAlignment="Center" BorderBrush="LightGray" Width="140" BorderThickness="1,0,0,1"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="auto" Width="auto">
+                                <DataGridColumnHeader x:Name="textSemester2" Content="Семестр 2" HorizontalContentAlignment="Center" BorderThickness="0,1,1,1" BorderBrush="LightGray"/>
+                                <StackPanel Orientation="Vertical" Width="auto">
+                                    <DataGridColumnHeader Content="Нагрузка (в часах)" HorizontalContentAlignment="Center" BorderThickness="0,0,1,1" BorderBrush="LightGray"/>
+                                    <StackPanel Orientation="Horizontal" Width="auto">
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Максимальная" Width="140" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}"  FontSize="10" Content="Самостоятельная" Width="140" HorizontalContentAlignment="Center" Height="40" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Консультации" Height="40" Width="140" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Content="Обязательная" Height="40" Width="140" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                        <StackPanel Orientation="Vertical" Width="auto" Height="140" VerticalAlignment="Top">
+                                            <DataGridColumnHeader Content="в том числе" FontSize="10" HorizontalContentAlignment="Center" Height="20" Padding="0" BorderThickness="0,0,1,1" BorderBrush="LightGray" Background="Transparent"/>
+                                            <StackPanel Orientation="Horizontal" Width="auto">
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Лекции, уроки" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Пр. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Лаб. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Семинар. занятия" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                                <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" FontSize="10" Height="40" Content="Курс. проектирования" Width="120" BorderThickness="1,0,0,1" BorderBrush="LightGray" Background="Transparent" HorizontalContentAlignment="Center"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <DataGridColumnHeader Style="{StaticResource StyleVerticalTextHeader}" Content="Индивид. проект" FontSize="10" Height="40" Background="Transparent" HorizontalContentAlignment="Center" BorderBrush="LightGray" Width="140" BorderThickness="1,0,0,1"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Name="tbExam" TextChanged="tbExam_TextChanged" Text="{Binding Exam}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbOffset" TextChanged="tbOffset_TextChanged" Text="{Binding Offset}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbDiffOffset" TextChanged="tbDiffOffset_TextChanged" Text="{Binding DiffOffset}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbCourseProject" TextChanged="tbCourseProject_TextChanged" Text="{Binding CourseProject}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbCourseWork" TextChanged="tbCourseWork_TextChanged" Text="{Binding CourseWork}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbTestWork" TextChanged="tbTestWork_TextChanged" Text="{Binding TestWork}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox Name="tbOtherAttestation" TextChanged="tbOtherAttestation_TextChanged" Text="{Binding OtherAttestation}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+
+                                <TextBox x:Name="tbSemester1MaxLoad" TextChanged="tbSemester1MaxLoad_TextChanged" Text="{Binding Semester1MaxLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1IndependentLoad" TextChanged="tbSemester1IndependentLoad_TextChanged" Text="{Binding Semester1IndependentLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1ConsultationLoad" TextChanged="tbSemester1ConsultationLoad_TextChanged" Text="{Binding Semester1ConsultationLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1NecessaryLoad" TextChanged="tbSemester1NecessaryLoad_TextChanged" Text="{Binding Semester1NecessaryLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1LectureLoad" TextChanged="tbSemester1LectureLoad_TextChanged" Text="{Binding Semester1LectureLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1PracticeLoad" TextChanged="tbSemester1PracticeLoad_TextChanged" Text="{Binding Semester1PracticeLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1LaboratoryLoad" TextChanged="tbSemester1LaboratoryLoad_TextChanged" Text="{Binding Semester1LaboratoryLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1SeminarLoad" TextChanged="tbSemester1SeminarLoad_TextChanged" Text="{Binding Semester1SeminarLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1ProjectionLoad" TextChanged="tbSemester1ProjectionLoad_TextChanged" Text="{Binding Semester1ProjectionLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester1IndProjectLoad" TextChanged="tbSemester1IndProjectLoad_TextChanged" Text="{Binding Semester1IndProjectLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+
+                                <TextBox x:Name="tbSemester2MaxLoad" TextChanged="tbSemester2MaxLoad_TextChanged" Text="{Binding Semester2MaxLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2IndependentLoad" TextChanged="tbSemester2IndependentLoad_TextChanged" Text="{Binding Semester2IndependentLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2ConsultationLoad" TextChanged="tbSemester2ConsultationLoad_TextChanged" Text="{Binding Semester2ConsultationLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2NecessaryLoad" TextChanged="tbSemester2NecessaryLoad_TextChanged" Text="{Binding Semester2NecessaryLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2LectureLoad" TextChanged="tbSemester2LectureLoad_TextChanged" Text="{Binding Semester2LectureLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2PracticeLoad" TextChanged="tbSemester2PracticeLoad_TextChanged" Text="{Binding Semester2PracticeLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2LaboratoryLoad" TextChanged="tbSemester2LaboratoryLoad_TextChanged" Text="{Binding Semester2LaboratoryLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2SeminarLoad" TextChanged="tbSemester2SeminarLoad_TextChanged" Text="{Binding Semester2SeminarLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2ProjectionLoad" TextChanged="tbSemester2ProjectionLoad_TextChanged" Text="{Binding Semester2ProjectionLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="tbSemester2IndProjectLoad" TextChanged="tbSemester2IndProjectLoad_TextChanged" Text="{Binding Semester2IndProjectLoad}" BorderThickness="1" BorderBrush="LightGray" Padding="5" Width="40" HorizontalContentAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="tblData" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Данные по дисциплинам отсутствуют" Visibility="Hidden"/>
+        <TextBlock x:Name="tblInstruction" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Text="Необходимо указать специальность, квалификацию, год набора, учебный год и номер группы для загрузки учебного плана" TextWrapping="Wrap" Margin="150 0 150 0" Visibility="Visible" TextAlignment="Center"/>
+        <Button x:Name="btnSave" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Сохранить изменения" Click="btnSave_Click" Margin="0 0 15 0" IsEnabled="False" Visibility="Visible"/>
+    </Grid>
+</Page>
