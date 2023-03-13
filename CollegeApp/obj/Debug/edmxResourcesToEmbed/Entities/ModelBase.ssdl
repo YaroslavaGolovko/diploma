@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CollegeBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attestation">
+    <Key>
+      <PropertyRef Name="SubjectSpecialityId" />
+      <PropertyRef Name="SyllabusId" />
+      <PropertyRef Name="AttestationFormId" />
+    </Key>
+    <Property Name="SubjectSpecialityId" Type="int" Nullable="false" />
+    <Property Name="SyllabusId" Type="int" Nullable="false" />
+    <Property Name="AttestationFormId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AttestationForm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="StartYear" Type="int" Nullable="false" />
+    <Property Name="SpecialityId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="QualificationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoadType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecialityId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectLoad">
+    <Key>
+      <PropertyRef Name="SubjectSemesterId" />
+      <PropertyRef Name="LoadTypeId" />
+    </Key>
+    <Property Name="SubjectSemesterId" Type="int" Nullable="false" />
+    <Property Name="LoadTypeId" Type="int" Nullable="false" />
+    <Property Name="QtyHours" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectProfessor">
+    <Key>
+      <PropertyRef Name="SubjectSemesterId" />
+      <PropertyRef Name="ProfessorId" />
+    </Key>
+    <Property Name="SubjectSemesterId" Type="int" Nullable="false" />
+    <Property Name="ProfessorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectSemester">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectSpecialityId" Type="int" Nullable="false" />
+    <Property Name="Semester" Type="int" Nullable="false" />
+    <Property Name="SyllabusId" Type="int" Nullable="false" />
+    <Property Name="TotalQtyHours" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectSpeciality">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="SpecialityId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CategoryId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IndexName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Syllabus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupNumber" Type="int" Nullable="false" />
+    <Property Name="AcademicYear" Type="char" MaxLength="9" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="ProfessorId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Attestation_AttestationForm">
+    <End Role="AttestationForm" Type="Self.AttestationForm" Multiplicity="1" />
+    <End Role="Attestation" Type="Self.Attestation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttestationForm">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attestation">
+        <PropertyRef Name="AttestationFormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attestation_SubjectSpeciality">
+    <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="1" />
+    <End Role="Attestation" Type="Self.Attestation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectSpeciality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attestation">
+        <PropertyRef Name="SubjectSpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attestation_Syllabus">
+    <End Role="Syllabus" Type="Self.Syllabus" Multiplicity="1" />
+    <End Role="Attestation" Type="Self.Attestation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Syllabus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attestation">
+        <PropertyRef Name="SyllabusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Qualification">
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Qualification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="QualificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectLoad_LoadType">
+    <End Role="LoadType" Type="Self.LoadType" Multiplicity="1" />
+    <End Role="SubjectLoad" Type="Self.SubjectLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoadType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectLoad">
+        <PropertyRef Name="LoadTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectLoad_SubjectSemester">
+    <End Role="SubjectSemester" Type="Self.SubjectSemester" Multiplicity="1" />
+    <End Role="SubjectLoad" Type="Self.SubjectLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectSemester">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectLoad">
+        <PropertyRef Name="SubjectSemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectProfessor_Professor">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+    <End Role="SubjectProfessor" Type="Self.SubjectProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectProfessor">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectProfessor_SubjectSemester">
+    <End Role="SubjectSemester" Type="Self.SubjectSemester" Multiplicity="1" />
+    <End Role="SubjectProfessor" Type="Self.SubjectProfessor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectSemester">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectProfessor">
+        <PropertyRef Name="SubjectSemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectSemester_SubjectSpeciality">
+    <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="1" />
+    <End Role="SubjectSemester" Type="Self.SubjectSemester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectSpeciality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectSemester">
+        <PropertyRef Name="SubjectSpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectSemester_Syllabus">
+    <End Role="Syllabus" Type="Self.Syllabus" Multiplicity="1" />
+    <End Role="SubjectSemester" Type="Self.SubjectSemester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Syllabus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectSemester">
+        <PropertyRef Name="SyllabusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectSpeciality_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
+    <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectSpeciality">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectSpeciality_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectSpeciality">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectSpeciality_SubjectCategory">
+    <End Role="SubjectCategory" Type="Self.SubjectCategory" Multiplicity="1" />
+    <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectSpeciality">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Syllabus_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Syllabus" Type="Self.Syllabus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Syllabus">
+        <PropertyRef Name="GroupNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Professor">
+    <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CollegeBaseModelContainer">
+    <EntitySet Name="Attestation" EntityType="Self.Attestation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AttestationForm" EntityType="Self.AttestationForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professor" EntityType="Self.Professor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectCategory" EntityType="Self.SubjectCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectLoad" EntityType="Self.SubjectLoad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectProfessor" EntityType="Self.SubjectProfessor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectSemester" EntityType="Self.SubjectSemester" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectSpeciality" EntityType="Self.SubjectSpeciality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Syllabus" EntityType="Self.Syllabus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Attestation_AttestationForm" Association="Self.FK_Attestation_AttestationForm">
+      <End Role="AttestationForm" EntitySet="AttestationForm" />
+      <End Role="Attestation" EntitySet="Attestation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attestation_SubjectSpeciality" Association="Self.FK_Attestation_SubjectSpeciality">
+      <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+      <End Role="Attestation" EntitySet="Attestation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attestation_Syllabus" Association="Self.FK_Attestation_Syllabus">
+      <End Role="Syllabus" EntitySet="Syllabus" />
+      <End Role="Attestation" EntitySet="Attestation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Qualification" Association="Self.FK_Group_Qualification">
+      <End Role="Qualification" EntitySet="Qualification" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Speciality" Association="Self.FK_Group_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_Speciality" Association="Self.FK_Qualification_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectLoad_LoadType" Association="Self.FK_SubjectLoad_LoadType">
+      <End Role="LoadType" EntitySet="LoadType" />
+      <End Role="SubjectLoad" EntitySet="SubjectLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectLoad_SubjectSemester" Association="Self.FK_SubjectLoad_SubjectSemester">
+      <End Role="SubjectSemester" EntitySet="SubjectSemester" />
+      <End Role="SubjectLoad" EntitySet="SubjectLoad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectProfessor_Professor" Association="Self.FK_SubjectProfessor_Professor">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="SubjectProfessor" EntitySet="SubjectProfessor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectProfessor_SubjectSemester" Association="Self.FK_SubjectProfessor_SubjectSemester">
+      <End Role="SubjectSemester" EntitySet="SubjectSemester" />
+      <End Role="SubjectProfessor" EntitySet="SubjectProfessor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectSemester_SubjectSpeciality" Association="Self.FK_SubjectSemester_SubjectSpeciality">
+      <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+      <End Role="SubjectSemester" EntitySet="SubjectSemester" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectSemester_Syllabus" Association="Self.FK_SubjectSemester_Syllabus">
+      <End Role="Syllabus" EntitySet="Syllabus" />
+      <End Role="SubjectSemester" EntitySet="SubjectSemester" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectSpeciality_Speciality" Association="Self.FK_SubjectSpeciality_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectSpeciality_Subject" Association="Self.FK_SubjectSpeciality_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectSpeciality_SubjectCategory" Association="Self.FK_SubjectSpeciality_SubjectCategory">
+      <End Role="SubjectCategory" EntitySet="SubjectCategory" />
+      <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Syllabus_Group" Association="Self.FK_Syllabus_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Syllabus" EntitySet="Syllabus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Professor" Association="Self.FK_User_Professor">
+      <End Role="Professor" EntitySet="Professor" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
