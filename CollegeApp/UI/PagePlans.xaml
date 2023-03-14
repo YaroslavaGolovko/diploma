@@ -11,7 +11,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*" MinHeight="500"/>
+            <RowDefinition Height="*" MinHeight="545"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="tblName" Text="Учебные планы" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -155,6 +155,6 @@
         </DataGrid>
         <TextBlock x:Name="tblData" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Данные по дисциплинам отсутствуют" Visibility="Hidden"/>
         <TextBlock x:Name="tblInstruction" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Text="Необходимо указать специальность, квалификацию, год набора, учебный год и номер группы для загрузки учебного плана" TextWrapping="Wrap" Margin="150 0 150 0" Visibility="Visible" TextAlignment="Center"/>
-        <Button x:Name="btnSave" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Сохранить изменения" Click="btnSave_Click" Margin="0 0 15 0" IsEnabled="False" Visibility="Visible"/>
+        <Button x:Name="btnSave" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Сохранить изменения" Click="btnSave_Click" Margin="0 0 10 0" IsEnabled="False" Visibility="Visible"/>
     </Grid>
 </Page>

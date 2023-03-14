@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище CollegeBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище CollegeBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attestation">
           <Key>
             <PropertyRef Name="SubjectSpecialityId" />
@@ -81,8 +81,16 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndexName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="SubjectLoad">
           <Key>
@@ -118,8 +126,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubjectId" Type="int" Nullable="false" />
           <Property Name="SpecialityId" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="CategoryId" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="IndexName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="IndexName" Type="int" Nullable="false" />
           <Property Name="QualificationId" Type="int" Nullable="false" />
           <Property Name="StartYear" Type="int" Nullable="false" />
         </EntityType>
@@ -343,6 +351,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SubjectSpeciality_SubjectIndex">
+          <End Role="SubjectIndex" Type="Self.SubjectIndex" Multiplicity="1" />
+          <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectSpeciality">
+              <PropertyRef Name="IndexName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Syllabus_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Syllabus" Type="Self.Syllabus" Multiplicity="*" />
@@ -390,6 +410,7 @@
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectCategory" EntityType="Self.SubjectCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectIndex" EntityType="Self.SubjectIndex" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectLoad" EntityType="Self.SubjectLoad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectProfessor" EntityType="Self.SubjectProfessor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectSemester" EntityType="Self.SubjectSemester" Schema="dbo" store:Type="Tables" />
@@ -461,6 +482,10 @@
             <End Role="SubjectCategory" EntitySet="SubjectCategory" />
             <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
           </AssociationSet>
+          <AssociationSet Name="FK_SubjectSpeciality_SubjectIndex" Association="Self.FK_SubjectSpeciality_SubjectIndex">
+            <End Role="SubjectIndex" EntitySet="SubjectIndex" />
+            <End Role="SubjectSpeciality" EntitySet="SubjectSpeciality" />
+          </AssociationSet>
           <AssociationSet Name="FK_Syllabus_Group" Association="Self.FK_Syllabus_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Syllabus" EntitySet="Syllabus" />
@@ -474,7 +499,8 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CollegeBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -540,7 +566,7 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_Group_Qualification" FromRole="Qualification" ToRole="Group" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Qualification_Speciality" FromRole="Qualification" ToRole="Speciality" />
-          <NavigationProperty Name="SubjectSpecialities" Relationship="CollegeBaseModel.FK_SubjectSpeciality_Qualification" FromRole="Qualification" ToRole="SubjectSpeciality" />
+          <NavigationProperty Name="SubjectSpecialities" Relationship="Self.FK_SubjectSpeciality_Qualification" FromRole="Qualification" ToRole="SubjectSpeciality" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -572,9 +598,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndexName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="SubjectSpecialities" Relationship="Self.FK_SubjectSpeciality_SubjectCategory" FromRole="SubjectCategory" ToRole="SubjectSpeciality" />
+        </EntityType>
+        <EntityType Name="SubjectIndex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubjectSpecialities" Relationship="Self.FK_SubjectSpeciality_SubjectIndex" FromRole="SubjectIndex" ToRole="SubjectSpeciality" />
         </EntityType>
         <EntityType Name="SubjectLoad">
           <Key>
@@ -608,16 +643,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubjectId" Type="Int32" Nullable="false" />
           <Property Name="SpecialityId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CategoryId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IndexName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IndexName" Type="Int32" Nullable="false" />
+          <Property Name="QualificationId" Type="Int32" Nullable="false" />
+          <Property Name="StartYear" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Attestations" Relationship="Self.FK_Attestation_SubjectSpeciality" FromRole="SubjectSpeciality" ToRole="Attestation" />
+          <NavigationProperty Name="Qualification" Relationship="Self.FK_SubjectSpeciality_Qualification" FromRole="SubjectSpeciality" ToRole="Qualification" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_SubjectSpeciality_Speciality" FromRole="SubjectSpeciality" ToRole="Speciality" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_SubjectSpeciality_Subject" FromRole="SubjectSpeciality" ToRole="Subject" />
           <NavigationProperty Name="SubjectCategory" Relationship="Self.FK_SubjectSpeciality_SubjectCategory" FromRole="SubjectSpeciality" ToRole="SubjectCategory" />
+          <NavigationProperty Name="SubjectIndex" Relationship="Self.FK_SubjectSpeciality_SubjectIndex" FromRole="SubjectSpeciality" ToRole="SubjectIndex" />
           <NavigationProperty Name="SubjectSemesters" Relationship="Self.FK_SubjectSemester_SubjectSpeciality" FromRole="SubjectSpeciality" ToRole="SubjectSemester" />
-          <Property Name="QualificationId" Type="Int32" Nullable="false" />
-          <Property Name="StartYear" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Qualification" Relationship="CollegeBaseModel.FK_SubjectSpeciality_Qualification" FromRole="SubjectSpeciality" ToRole="Qualification" />
         </EntityType>
         <EntityType Name="Syllabu">
           <Key>
@@ -760,6 +796,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SubjectSpeciality_Qualification">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectSpeciality">
+              <PropertyRef Name="QualificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -805,6 +853,18 @@
             </Principal>
             <Dependent Role="SubjectSpeciality">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectSpeciality_SubjectIndex">
+          <End Role="SubjectIndex" Type="Self.SubjectIndex" Multiplicity="1" />
+          <End Role="SubjectSpeciality" Type="Self.SubjectSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectIndex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectSpeciality">
+              <PropertyRef Name="IndexName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -859,6 +919,7 @@
           <EntitySet Name="Specialities" EntityType="Self.Speciality" />
           <EntitySet Name="Subjects" EntityType="Self.Subject" />
           <EntitySet Name="SubjectCategories" EntityType="Self.SubjectCategory" />
+          <EntitySet Name="SubjectIndexes" EntityType="Self.SubjectIndex" />
           <EntitySet Name="SubjectLoads" EntityType="Self.SubjectLoad" />
           <EntitySet Name="SubjectSemesters" EntityType="Self.SubjectSemester" />
           <EntitySet Name="SubjectSpecialities" EntityType="Self.SubjectSpeciality" />
@@ -901,6 +962,10 @@
             <End Role="Speciality" EntitySet="Specialities" />
             <End Role="Qualification" EntitySet="Qualifications" />
           </AssociationSet>
+          <AssociationSet Name="FK_SubjectSpeciality_Qualification" Association="Self.FK_SubjectSpeciality_Qualification">
+            <End Role="Qualification" EntitySet="Qualifications" />
+            <End Role="SubjectSpeciality" EntitySet="SubjectSpecialities" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
@@ -915,6 +980,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_SubjectSpeciality_SubjectCategory" Association="Self.FK_SubjectSpeciality_SubjectCategory">
             <End Role="SubjectCategory" EntitySet="SubjectCategories" />
+            <End Role="SubjectSpeciality" EntitySet="SubjectSpecialities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectSpeciality_SubjectIndex" Association="Self.FK_SubjectSpeciality_SubjectIndex">
+            <End Role="SubjectIndex" EntitySet="SubjectIndexes" />
             <End Role="SubjectSpeciality" EntitySet="SubjectSpecialities" />
           </AssociationSet>
           <AssociationSet Name="FK_SubjectLoad_SubjectSemester" Association="Self.FK_SubjectLoad_SubjectSemester">
@@ -933,23 +1002,7 @@
             <End Role="Professor" EntitySet="Professors" />
             <End Role="SubjectSemester" EntitySet="SubjectSemesters" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubjectSpeciality_Qualification" Association="CollegeBaseModel.FK_SubjectSpeciality_Qualification">
-            <End Role="Qualification" EntitySet="Qualifications" />
-            <End Role="SubjectSpeciality" EntitySet="SubjectSpecialities" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_SubjectSpeciality_Qualification">
-          <End Type="CollegeBaseModel.Qualification" Role="Qualification" Multiplicity="1" />
-          <End Type="CollegeBaseModel.SubjectSpeciality" Role="SubjectSpeciality" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Qualification">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectSpeciality">
-              <PropertyRef Name="QualificationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1039,6 +1092,15 @@
             <EntityTypeMapping TypeName="CollegeBaseModel.SubjectCategory">
               <MappingFragment StoreEntitySet="SubjectCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IndexName" ColumnName="IndexName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectIndexes">
+            <EntityTypeMapping TypeName="CollegeBaseModel.SubjectIndex">
+              <MappingFragment StoreEntitySet="SubjectIndex">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1066,13 +1128,13 @@
           <EntitySetMapping Name="SubjectSpecialities">
             <EntityTypeMapping TypeName="CollegeBaseModel.SubjectSpeciality">
               <MappingFragment StoreEntitySet="SubjectSpeciality">
-                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
-                <ScalarProperty Name="QualificationId" ColumnName="QualificationId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="IndexName" ColumnName="IndexName" />
+                <ScalarProperty Name="QualificationId" ColumnName="QualificationId" />
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -51,3 +51,9 @@ D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddNewCategory.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddNewSubject.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddNewCategory.baml
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddNewSubject.baml
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UC\UCGroup.g.cs
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\PageGroups.g.cs
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UC\UCGroup.baml
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\PageGroups.baml
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddEditGroup.g.cs
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\WndAddEditGroup.baml

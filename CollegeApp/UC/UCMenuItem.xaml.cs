@@ -50,6 +50,10 @@ namespace CollegeApp.UC
             {
                 Control._currentFrame.Navigate(new PageSubjects());
             }
+            if (this.currentItem.Type == 4)
+            {
+                Control._currentFrame.Navigate(new PageGroups());
+            }
         }
     }
 }

@@ -29,14 +29,14 @@ namespace CollegeApp.UI
         {
             try
             {
-                if(CollegeBaseEntities.GetContext().SubjectCategories.Where(s=>s.Id.ToLower()==tbIndex.Text.ToLower().ToString() && s.Name.ToLower()==tbName.Text.ToLower().ToString()).FirstOrDefault() != null)
+                if(CollegeBaseEntities.GetContext().SubjectCategories.Where(s=>s.IndexName.ToLower()==tbIndex.Text.ToLower().ToString() && s.Name.ToLower()==tbName.Text.ToLower().ToString()).FirstOrDefault() != null)
                 {
                     MessageBox.Show("Данная категория уже существует в базе.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     SubjectCategory category = new SubjectCategory();
-                    category.Id = tbIndex.Text;
+                    category.IndexName = tbIndex.Text;
                     category.Name = tbName.Text;
                     CollegeBaseEntities.GetContext().SubjectCategories.Add(category);
                     CollegeBaseEntities.GetContext().SaveChanges();

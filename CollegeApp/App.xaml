@@ -107,6 +107,52 @@
                 <Setter Property="FontFamily" Value="Cambria"/>
                 <Setter Property="FontSize" Value="16"/>
             </Style>
+            <Style TargetType="TextBox" x:Key="StyleTextBoxNumberGroup">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <VisualBrush x:Key="hint" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label VerticalContentAlignment="Center" Width="250" Height="35" FontFamily="Cambria" FontSize="16" Content="Введите номер группы" Foreground="LightGray" Background="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <DataTrigger Binding ="{Binding ElementName=tbNumber, Path=Text.Length}" Value="0">
+                        <Setter Property="Background" Value="{StaticResource hint}" />
+                    </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="CaretBrush" Value="Gray"/>
+                <Setter Property="FontFamily" Value="Cambria"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="StyleTextBoxStartYear">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <VisualBrush x:Key="hint" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label VerticalContentAlignment="Center" Width="250" Height="35" FontFamily="Cambria" FontSize="16" Content="Введите год набора" Foreground="LightGray" Background="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <DataTrigger Binding ="{Binding ElementName=tbStartYear, Path=Text.Length}" Value="0">
+                        <Setter Property="Background" Value="{StaticResource hint}" />
+                    </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="CaretBrush" Value="Gray"/>
+                <Setter Property="FontFamily" Value="Cambria"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
             <Style TargetType="TextBox" x:Key="StyleTextBoxNameCategory">
                 <Style.Resources>
                     <Style TargetType="{x:Type Border}">

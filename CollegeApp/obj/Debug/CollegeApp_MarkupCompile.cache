@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\диплом\CollegeApp\CollegeApp\App.xaml
-11949930263
-21929009593
-38627867013
+14-345113450
+2456249553
+42-1900398642
 2285661978
-UC\UCMenuItem.xaml;UC\UCSubject.xaml;UI\PageLoads.xaml;UI\PagePlans.xaml;UI\PageSubjects.xaml;UI\WndAddNewCategory.xaml;UI\WndAddNewSubject.xaml;UI\WndAddPlan.xaml;UI\WndAddSubject.xaml;UI\WndStart.xaml;UI\WndWork.xaml;
+UC\UCGroup.xaml;UC\UCMenuItem.xaml;UC\UCSubject.xaml;UI\PageGroups.xaml;UI\PageLoads.xaml;UI\PagePlans.xaml;UI\PageSubjects.xaml;UI\WndAddEditGroup.xaml;UI\WndAddNewCategory.xaml;UI\WndAddNewSubject.xaml;UI\WndAddPlan.xaml;UI\WndAddSubject.xaml;UI\WndStart.xaml;UI\WndWork.xaml;
 
 False
 

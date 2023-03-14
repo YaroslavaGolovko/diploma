@@ -83,74 +83,83 @@
     <Compile Include="Classes\ItemMenu.cs" />
     <Compile Include="Classes\SubItem.cs" />
     <Compile Include="Entities\Attestation.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\AttestationForm.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\BaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\BaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\BaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BaseModel.edmx</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Group.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\LoadType.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ModelCollegeBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCollegeBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ModelCollegeBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ModelCollegeBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCollegeBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Professor.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Qualification.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Role.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Speciality.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Subject.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SubjectCategory.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SubjectIndex.cs">
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SubjectLoad.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SubjectRow.cs" />
     <Compile Include="Entities\SubjectSemester.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SubjectSpeciality.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Syllabu.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sysdiagram.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\User.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
+      <DependentUpon>ModelCollegeBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCGroup.xaml.cs">
+      <DependentUpon>UCGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\UCMenuItem.xaml.cs">
       <DependentUpon>UCMenuItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\UCSubject.xaml.cs">
       <DependentUpon>UCSubject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PageGroups.xaml.cs">
+      <DependentUpon>PageGroups.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\PageLoads.xaml.cs">
       <DependentUpon>PageLoads.xaml</DependentUpon>
@@ -160,6 +169,9 @@
     </Compile>
     <Compile Include="UI\PageSubjects.xaml.cs">
       <DependentUpon>PageSubjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WndAddEditGroup.xaml.cs">
+      <DependentUpon>WndAddEditGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\WndAddNewCategory.xaml.cs">
       <DependentUpon>WndAddNewCategory.xaml</DependentUpon>
@@ -176,11 +188,19 @@
     <Compile Include="UI\WndWork.xaml.cs">
       <DependentUpon>WndWork.xaml</DependentUpon>
     </Compile>
+    <Page Include="UC\UCGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\UCMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\UCSubject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PageGroups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\PageSubjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WndAddEditGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,12 +271,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\BaseModel.edmx">
+    <EntityDeploy Include="Entities\ModelCollegeBase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelCollegeBase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\BaseModel.edmx.diagram">
-      <DependentUpon>BaseModel.edmx</DependentUpon>
+    <None Include="Entities\ModelCollegeBase.edmx.diagram">
+      <DependentUpon>ModelCollegeBase.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -282,15 +306,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\BaseModel.Context.tt">
+    <Content Include="Entities\ModelCollegeBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseModel.edmx</DependentUpon>
-      <LastGenOutput>BaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>ModelCollegeBase.edmx</DependentUpon>
+      <LastGenOutput>ModelCollegeBase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entities\BaseModel.tt">
+    <Content Include="Entities\ModelCollegeBase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseModel.edmx</DependentUpon>
-      <LastGenOutput>BaseModel.cs</LastGenOutput>
+      <DependentUpon>ModelCollegeBase.edmx</DependentUpon>
+      <LastGenOutput>ModelCollegeBase.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

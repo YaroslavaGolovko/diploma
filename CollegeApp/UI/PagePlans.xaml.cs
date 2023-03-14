@@ -30,6 +30,8 @@ namespace CollegeApp.UI
         private string specialityId;
         private Syllabu plan;
         private Syllabu _requiredPlan;
+        int firstSemester;
+        int secondSemester;
         public PagePlans()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace CollegeApp.UI
                 {
                     SubjectRow row = new SubjectRow();
                     row.IdSubjectSpeciality = subject.Id;
-                    row.Index = subject.IndexName;
+                    row.Index = subject.SubjectIndex.Name;
                     row.Name = subject.Subject.Name;
                     row.GroupNumber = group.Number;
                     var attestation = subject.Attestations.Where(a => a.Syllabu.GroupNumber == row.GroupNumber).ToList();
@@ -165,7 +167,7 @@ namespace CollegeApp.UI
                         }
                     }
 
-                    var subjectName = CollegeBaseEntities.GetContext().SubjectSpecialities.Where(s => s.IndexName == row.Index && s.SpecialityId == specialityId).FirstOrDefault();
+                    var subjectName = CollegeBaseEntities.GetContext().SubjectSpecialities.Where(s => s.SubjectIndex.Name == row.Index && s.SpecialityId == specialityId).FirstOrDefault();
                     if (subjectName != null)
                     {
                         var requiredRow = rows.Where(r => r.Index == row.Index && r.Name == row.Name).FirstOrDefault();
@@ -269,21 +271,29 @@ namespace CollegeApp.UI
                         case 0:
                             textSemester1.Content = "Семестр 1";
                             textSemester2.Content = "Семестр 2";
+                            firstSemester = 1;
+                            secondSemester = 2;
                             break;
 
                         case 1:
                             textSemester1.Content = "Семестр 3";
                             textSemester2.Content = "Семестр 4";
+                            firstSemester = 3;
+                            secondSemester = 4;
                             break;
 
                         case 2:
                             textSemester1.Content = "Семестр 5";
                             textSemester2.Content = "Семестр 6";
+                            firstSemester = 5;
+                            secondSemester = 6;
                             break;
 
                         case 3:
                             textSemester1.Content = "Семестр 7";
                             textSemester2.Content = "Семестр 8";
+                            firstSemester = 7;
+                            secondSemester = 8;
                             break;
                     }
                     int id = plan.Id;
@@ -339,8 +349,9 @@ namespace CollegeApp.UI
 
         private void btnAddRow_Click(object sender, RoutedEventArgs e)
         {
-            WndAddSubject window = new WndAddSubject(Classes.Control._currentPlan.Id, Classes.Control._currentPlan.Group.SpecialityId,Classes.Control._currentPlan.Group.QualificationId);
+            WndAddSubject window = new WndAddSubject(Classes.Control._currentPlan.Id, Classes.Control._currentPlan.Group.SpecialityId,Classes.Control._currentPlan.Group.QualificationId,firstSemester,secondSemester);
             window.ShowDialog();
+            CollegeBaseEntities.GetContext().SaveChanges();
             GetPlan();
         }
 

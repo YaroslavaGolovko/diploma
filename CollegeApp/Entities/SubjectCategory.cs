@@ -20,7 +20,8 @@ namespace CollegeApp.Entities
             this.SubjectSpecialities = new HashSet<SubjectSpeciality>();
         }
     
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string IndexName { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

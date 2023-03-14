@@ -27,7 +27,6 @@ namespace CollegeApp.UI
             cmbSpecialities.ItemsSource = CollegeBaseEntities.GetContext().Specialities.ToList();
             cmbQualifications.ItemsSource = CollegeBaseEntities.GetContext().Qualifications.ToList();
             cmbStartYear.ItemsSource = CollegeBaseEntities.GetContext().Groups.Select(g => g.StartYear).Distinct().ToList();
-            cmbAcademicYear.ItemsSource = CollegeBaseEntities.GetContext().Syllabus.Select(s => s.AcademicYear).Distinct().ToList();
         }
 
         private void cmbSpecialities_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,7 +69,8 @@ namespace CollegeApp.UI
                 var qualification = cmbQualifications.SelectedItem as Qualification;
                 int qualificationId = qualification.Id;
                 int startYear = Int32.Parse(cmbStartYear.SelectedItem.ToString());
-                string academicYear=cmbAcademicYear.SelectedItem as string;
+                TextBlock selectedAcademicYear=cmbAcademicYear.SelectedItem as TextBlock;
+                string academicYear = selectedAcademicYear.Text.ToString();
                 List<Group> groups = CollegeBaseEntities.GetContext().Groups.Where(g => g.SpecialityId == specialityId && g.QualificationId == qualificationId && g.StartYear == startYear).ToList();
                 if (groups != null)
                 {

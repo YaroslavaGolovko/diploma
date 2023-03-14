@@ -26,6 +26,7 @@ namespace CollegeApp.UI
         private ItemMenu _itemPlans;
         private ItemMenu _itemLoads;
         private ItemMenu _itemSubjects;
+        private ItemMenu _itemGroups;
         public WndWork()
         {
             InitializeComponent();
@@ -40,12 +41,15 @@ namespace CollegeApp.UI
             _itemPlans = new ItemMenu("Учебные планы", new UserControl(), PackIconKind.DriveDocument);
             _itemLoads = new ItemMenu("Нагрузка", new UserControl(), PackIconKind.DocumentSign);
             _itemSubjects = new ItemMenu("Дисциплины", new UserControl(), PackIconKind.BookAccount);
+            _itemGroups = new ItemMenu("Группы", new UserControl(), PackIconKind.PeopleGroup);
             _itemPlans.Type = 1;
             _itemLoads.Type = 2;
             _itemSubjects.Type = 3;
+            _itemGroups.Type = 4;
             Menu.Children.Add(new UCMenuItem(_itemPlans));
             Menu.Children.Add(new UCMenuItem(_itemLoads));
             Menu.Children.Add(new UCMenuItem(_itemSubjects));
+            Menu.Children.Add(new UCMenuItem(_itemGroups));
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

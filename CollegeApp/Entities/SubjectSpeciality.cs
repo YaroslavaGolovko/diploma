@@ -24,18 +24,19 @@ namespace CollegeApp.Entities
         public int Id { get; set; }
         public int SubjectId { get; set; }
         public string SpecialityId { get; set; }
-        public string CategoryId { get; set; }
-        public string IndexName { get; set; }
+        public int CategoryId { get; set; }
+        public int IndexName { get; set; }
         public int QualificationId { get; set; }
         public int StartYear { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attestation> Attestations { get; set; }
+        public virtual Qualification Qualification { get; set; }
         public virtual Speciality Speciality { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual SubjectCategory SubjectCategory { get; set; }
+        public virtual SubjectIndex SubjectIndex { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubjectSemester> SubjectSemesters { get; set; }
-        public virtual Qualification Qualification { get; set; }
     }
 }

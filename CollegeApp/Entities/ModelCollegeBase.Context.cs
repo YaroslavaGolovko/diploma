@@ -44,6 +44,7 @@ namespace CollegeApp.Entities
         public virtual DbSet<Speciality> Specialities { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<SubjectCategory> SubjectCategories { get; set; }
+        public virtual DbSet<SubjectIndex> SubjectIndexes { get; set; }
         public virtual DbSet<SubjectLoad> SubjectLoads { get; set; }
         public virtual DbSet<SubjectSemester> SubjectSemesters { get; set; }
         public virtual DbSet<SubjectSpeciality> SubjectSpecialities { get; set; }
