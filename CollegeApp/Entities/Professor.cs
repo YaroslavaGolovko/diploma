@@ -17,8 +17,8 @@ namespace CollegeApp.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Professor()
         {
+            this.SubjectProfessors = new HashSet<SubjectProfessor>();
             this.Users = new HashSet<User>();
-            this.SubjectSemesters = new HashSet<SubjectSemester>();
         }
     
         public int Id { get; set; }
@@ -27,8 +27,8 @@ namespace CollegeApp.Entities
         public string Patronymic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<SubjectProfessor> SubjectProfessors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectSemester> SubjectSemesters { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

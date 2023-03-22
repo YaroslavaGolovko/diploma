@@ -18,7 +18,7 @@ namespace CollegeApp.Entities
         public SubjectSemester()
         {
             this.SubjectLoads = new HashSet<SubjectLoad>();
-            this.Professors = new HashSet<Professor>();
+            this.SubjectProfessors = new HashSet<SubjectProfessor>();
         }
     
         public int Id { get; set; }
@@ -29,9 +29,9 @@ namespace CollegeApp.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubjectLoad> SubjectLoads { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubjectProfessor> SubjectProfessors { get; set; }
         public virtual SubjectSpeciality SubjectSpeciality { get; set; }
         public virtual Syllabu Syllabu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Professor> Professors { get; set; }
     }
 }

@@ -436,21 +436,33 @@ namespace CollegeApp.Entities
 
                             if (plan.Count == 0)
                             {
-                                SubjectSemester subjectFirstSemester = new SubjectSemester();
-                                subjectFirstSemester.SubjectSpecialityId = _currentRow.Id;
-                                subjectFirstSemester.Semester = 1;
-                                subjectFirstSemester.SyllabusId = id;
-                                subjectFirstSemester.TotalQtyHours = 0;
-                                CollegeBaseEntities.GetContext().SubjectSemesters.Add(subjectFirstSemester);
-                                CollegeBaseEntities.GetContext().SaveChanges();
+                                if (row.Semester1MaxLoad != null)
+                                {
+                                    if (row.Semester1MaxLoad.Length > 0)
+                                    {
+                                        SubjectSemester subjectFirstSemester = new SubjectSemester();
+                                        subjectFirstSemester.SubjectSpecialityId = _currentRow.Id;
+                                        subjectFirstSemester.Semester = 1;
+                                        subjectFirstSemester.SyllabusId = id;
+                                        subjectFirstSemester.TotalQtyHours = 0;
+                                        CollegeBaseEntities.GetContext().SubjectSemesters.Add(subjectFirstSemester);
+                                        CollegeBaseEntities.GetContext().SaveChanges();
+                                    }
+                                }
 
-                                SubjectSemester subjectSecondSemester = new SubjectSemester();
-                                subjectSecondSemester.SubjectSpecialityId = _currentRow.Id;
-                                subjectSecondSemester.Semester = 2;
-                                subjectSecondSemester.SyllabusId = id;
-                                subjectSecondSemester.TotalQtyHours = 0;
-                                CollegeBaseEntities.GetContext().SubjectSemesters.Add(subjectSecondSemester);
-                                CollegeBaseEntities.GetContext().SaveChanges();
+                                if (row.Semester2MaxLoad != null)
+                                {
+                                    if (row.Semester2MaxLoad.Length > 0)
+                                    {
+                                        SubjectSemester subjectSecondSemester = new SubjectSemester();
+                                        subjectSecondSemester.SubjectSpecialityId = _currentRow.Id;
+                                        subjectSecondSemester.Semester = 2;
+                                        subjectSecondSemester.SyllabusId = id;
+                                        subjectSecondSemester.TotalQtyHours = 0;
+                                        CollegeBaseEntities.GetContext().SubjectSemesters.Add(subjectSecondSemester);
+                                        CollegeBaseEntities.GetContext().SaveChanges();
+                                    }
+                                }
                             }
 
                             plan = _currentRow.SubjectSemesters.Where(s => s.SyllabusId == id).ToList();

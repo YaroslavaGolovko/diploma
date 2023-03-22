@@ -1,0 +1,17 @@
+﻿<Window x:Class="CollegeApp.UI.WndAddNewSubject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollegeApp.UI"
+        mc:Ignorable="d"
+        Title="Документы УМО" Height="350" Width="600" Icon="/Resources/logoICO.ico" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="{StaticResource DarkMainColor}">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock Text="Добавление дисциплины" FontSize="30" Margin="0 30 0 0" Foreground="White"/>
+            <TextBox x:Name="tbName" Width="250" Style="{StaticResource StyleTextBoxNameCategory}" Margin="0 30 0 0" TextChanged="tbName_TextChanged"/>
+            <Button x:Name="btnSave" Content="Сохранить" Margin="0 40 0 0" Click="btnSave_Click" IsEnabled="False"/>
+            <Button x:Name="btnClose" Content="Закрыть" Margin="0 40 0 0" Click="btnClose_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

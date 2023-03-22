@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:CollegeApp"
-             StartupUri="UI/WndStart.xaml">
+             StartupUri="UI/Windows/WndStart.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -51,6 +51,75 @@
                 </Style.Resources>
                 <Style.Triggers>
                     <DataTrigger Binding ="{Binding ElementName=tbLogin, Path=Text.Length}" Value="0">
+                        <Setter Property="Background" Value="{StaticResource hint}" />
+                    </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="CaretBrush" Value="Gray"/>
+                <Setter Property="FontFamily" Value="Cambria"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="StyleTextBoxFirstName">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <VisualBrush x:Key="hint" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label VerticalContentAlignment="Center" Width="250" Height="35" FontFamily="Cambria" FontSize="16" Content="Введите имя" Foreground="LightGray" Background="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <DataTrigger Binding ="{Binding ElementName=tbFirstName, Path=Text.Length}" Value="0">
+                        <Setter Property="Background" Value="{StaticResource hint}" />
+                    </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="CaretBrush" Value="Gray"/>
+                <Setter Property="FontFamily" Value="Cambria"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="StyleTextBoxLastName">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <VisualBrush x:Key="hint" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label VerticalContentAlignment="Center" Width="250" Height="35" FontFamily="Cambria" FontSize="16" Content="Введите фамилию" Foreground="LightGray" Background="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <DataTrigger Binding ="{Binding ElementName=tbLastName, Path=Text.Length}" Value="0">
+                        <Setter Property="Background" Value="{StaticResource hint}" />
+                    </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="CaretBrush" Value="Gray"/>
+                <Setter Property="FontFamily" Value="Cambria"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="StyleTextBoxPatronymic">
+                <Style.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <VisualBrush x:Key="hint" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                        <VisualBrush.Visual>
+                            <Label VerticalContentAlignment="Center" Width="250" Height="35" FontFamily="Cambria" FontSize="16" Content="Введите отчество" Foreground="LightGray" Background="White"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Style.Resources>
+                <Style.Triggers>
+                    <DataTrigger Binding ="{Binding ElementName=tbPatronymic, Path=Text.Length}" Value="0">
                         <Setter Property="Background" Value="{StaticResource hint}" />
                     </DataTrigger>
                 </Style.Triggers>

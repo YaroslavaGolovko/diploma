@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entities/modelcollegebase.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entities/modelcollegebase.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entities/collegebasemodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entities/collegebasemodel.tt")]
 
 

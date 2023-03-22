@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c903785050824758b98ef044950701f7" Name="Diagram1">
+        <EntityTypeShape EntityType="CollegeBaseModel.Attestation" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.AttestationForm" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Group" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.LoadType" Width="1.5" PointX="13.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Professor" Width="1.5" PointX="13.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Qualification" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Role" Width="1.5" PointX="13.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Speciality" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Subject" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectCategory" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectIndex" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectLoad" Width="1.5" PointX="15.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectProfessor" Width="1.5" PointX="15.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectSemester" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SubjectSpeciality" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Syllabu" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeBaseModel.User" Width="1.5" PointX="15.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Attestation_AttestationForm" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Attestation_SubjectSpeciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Attestation_Syllabus" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Group_Qualification" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Group_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Syllabus_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectLoad_LoadType" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectProfessor_Professor" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_User_Professor" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Qualification_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSpeciality_Qualification" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSpeciality_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSpeciality_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSpeciality_SubjectCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSpeciality_SubjectIndex" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectLoad_SubjectSemester" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectProfessor_SubjectSemester" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSemester_SubjectSpeciality" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeBaseModel.FK_SubjectSemester_Syllabus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,5 +1,6 @@
 ﻿using CollegeApp.Classes;
 using CollegeApp.UI;
+using CollegeApp.UI.Pages;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -53,6 +54,10 @@ namespace CollegeApp.UC
             if (this.currentItem.Type == 4)
             {
                 Control._currentFrame.Navigate(new PageGroups());
+            }
+            if (this.currentItem.Type == 5)
+            {
+                Control._currentFrame.Navigate(new PageProfessors());
             }
         }
     }
