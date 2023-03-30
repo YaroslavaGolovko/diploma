@@ -11,7 +11,7 @@
             <TextBlock Text="Добавление индекса" FontSize="30" Margin="0 30 0 0" Foreground="White"/>
             <TextBox x:Name="tbName" Width="250" Style="{StaticResource StyleTextBoxNameCategory}" Margin="0 30 0 0" TextChanged="tbName_TextChanged"/>
             <Button x:Name="btnSave" Content="Сохранить" Margin="0 40 0 0" Click="btnSave_Click" IsEnabled="False"/>
-            <Button x:Name="btnClose" Content="Закрыть" Margin="0 40 0 0" Click="btnClose_Click"/>
+            <Button x:Name="btnClose" Content="Выйти" Margin="0 40 0 0" Click="btnClose_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Группы"/>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30" Text="Группы"/>
         <DataGrid x:Name="DGridGroups" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10 10 10 10" FontFamily="Cambria"
                   AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RowHeight="90">

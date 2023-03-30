@@ -14,7 +14,7 @@
                       SelectionChanged="cmbProfessors_SelectionChanged" Width="250" Foreground="Gray" Margin="0 40 0 0"/>
             <Button x:Name="btnAddProfessor" Content="Добавить преподавателя" Click="btnAddProfessor_Click" Margin="0 30 0 0"/>
             <Button x:Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click" Margin="0 30 0 0"/>
-            <Button x:Name="btnClose" Content="Закрыть" Margin="0 30 0 40" Click="btnClose_Click"/>
+            <Button x:Name="btnClose" Content="Выйти" Margin="0 30 0 40" Click="btnClose_Click"/>
         </StackPanel>
     </Grid>
 </Window>

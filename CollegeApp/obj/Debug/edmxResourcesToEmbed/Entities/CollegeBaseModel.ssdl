@@ -18,6 +18,23 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectProfessorId" Type="int" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DocumentSupply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentId" Type="int" Nullable="false" />
+    <Property Name="SupplyTypeId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="Group">
     <Key>
       <PropertyRef Name="Number" />
@@ -126,6 +143,13 @@
     <Property Name="QualificationId" Type="int" Nullable="false" />
     <Property Name="StartYear" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="SupplyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="Syllabus">
     <Key>
       <PropertyRef Name="Id" />
@@ -187,6 +211,42 @@
       </Principal>
       <Dependent Role="Attestation">
         <PropertyRef Name="SyllabusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_SubjectProfessor">
+    <End Role="SubjectProfessor" Type="Self.SubjectProfessor" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectProfessor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="SubjectProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentSupply_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="DocumentSupply" Type="Self.DocumentSupply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentSupply">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentSupply_SupplyType">
+    <End Role="SupplyType" Type="Self.SupplyType" Multiplicity="1" />
+    <End Role="DocumentSupply" Type="Self.DocumentSupply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplyType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentSupply">
+        <PropertyRef Name="SupplyTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -397,6 +457,8 @@
   <EntityContainer Name="Хранилище CollegeBaseModelContainer">
     <EntitySet Name="Attestation" EntityType="Self.Attestation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AttestationForm" EntityType="Self.AttestationForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentSupply" EntityType="Self.DocumentSupply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Professor" EntityType="Self.Professor" Schema="dbo" store:Type="Tables" />
@@ -410,6 +472,7 @@
     <EntitySet Name="SubjectProfessor" EntityType="Self.SubjectProfessor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectSemester" EntityType="Self.SubjectSemester" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubjectSpeciality" EntityType="Self.SubjectSpeciality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplyType" EntityType="Self.SupplyType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Syllabus" EntityType="Self.Syllabus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -424,6 +487,18 @@
     <AssociationSet Name="FK_Attestation_Syllabus" Association="Self.FK_Attestation_Syllabus">
       <End Role="Syllabus" EntitySet="Syllabus" />
       <End Role="Attestation" EntitySet="Attestation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_SubjectProfessor" Association="Self.FK_Document_SubjectProfessor">
+      <End Role="SubjectProfessor" EntitySet="SubjectProfessor" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentSupply_Document" Association="Self.FK_DocumentSupply_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DocumentSupply" EntitySet="DocumentSupply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentSupply_SupplyType" Association="Self.FK_DocumentSupply_SupplyType">
+      <End Role="SupplyType" EntitySet="SupplyType" />
+      <End Role="DocumentSupply" EntitySet="DocumentSupply" />
     </AssociationSet>
     <AssociationSet Name="FK_Group_Qualification" Association="Self.FK_Group_Qualification">
       <End Role="Qualification" EntitySet="Qualification" />

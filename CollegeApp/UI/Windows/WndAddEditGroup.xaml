@@ -16,7 +16,7 @@
                       SelectionChanged="cmbQualifications_SelectionChanged" Width="250" Foreground="Gray" DisplayMemberPath="Name"/>
             <TextBox x:Name="tbStartYear" Text="{Binding StartYear}" Style="{StaticResource StyleTextBoxStartYear}" Margin="0 30 0 0" TextChanged="tbStartYear_TextChanged"/>
             <Button x:Name="btnSave" Content="Сохранить" Margin="0 30 0 0" Click="btnSave_Click" IsEnabled="False"/>
-            <Button x:Name="btnClose" Content="Закрыть" Margin="0 30 0 30" Click="btnClose_Click"/>
+            <Button x:Name="btnClose" Content="Выйти" Margin="0 30 0 30" Click="btnClose_Click"/>
         </StackPanel>   
     </Grid>
 </Window>

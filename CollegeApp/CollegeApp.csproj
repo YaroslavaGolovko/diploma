@@ -103,6 +103,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CollegeBaseModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Document.cs">
+      <DependentUpon>CollegeBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DocumentRow.cs" />
+    <Compile Include="Entities\DocumentSupply.cs">
+      <DependentUpon>CollegeBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Group.cs">
       <DependentUpon>CollegeBaseModel.tt</DependentUpon>
     </Compile>
@@ -145,6 +152,9 @@
     <Compile Include="Entities\SubjectSpeciality.cs">
       <DependentUpon>CollegeBaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\SupplyType.cs">
+      <DependentUpon>CollegeBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Syllabu.cs">
       <DependentUpon>CollegeBaseModel.tt</DependentUpon>
     </Compile>
@@ -159,6 +169,9 @@
     </Compile>
     <Compile Include="UC\UCSubject.xaml.cs">
       <DependentUpon>UCSubject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\PageDocuments.xaml.cs">
+      <DependentUpon>PageDocuments.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\PageGroups.xaml.cs">
       <DependentUpon>PageGroups.xaml</DependentUpon>
@@ -187,6 +200,9 @@
     <Compile Include="UI\Windows\WndAddNewCategory.xaml.cs">
       <DependentUpon>WndAddNewCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Windows\WndAddNewDocument.xaml.cs">
+      <DependentUpon>WndAddNewDocument.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Windows\WndAddNewIndex.xaml.cs">
       <DependentUpon>WndAddNewIndex.xaml</DependentUpon>
     </Compile>
@@ -210,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\UCSubject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\PageDocuments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Windows\WndAddNewCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\WndAddNewDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

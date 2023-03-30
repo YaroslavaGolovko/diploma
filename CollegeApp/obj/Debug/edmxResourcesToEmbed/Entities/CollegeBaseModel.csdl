@@ -127,6 +127,7 @@
     <Property Name="ProfessorId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Professor" Relationship="Self.FK_SubjectProfessor_Professor" FromRole="SubjectProfessor" ToRole="Professor" />
     <NavigationProperty Name="SubjectSemester" Relationship="Self.FK_SubjectProfessor_SubjectSemester" FromRole="SubjectProfessor" ToRole="SubjectSemester" />
+    <NavigationProperty Name="Documents" Relationship="CollegeBaseModel.FK_Document_SubjectProfessor" FromRole="SubjectProfessor" ToRole="Document" />
   </EntityType>
   <EntityType Name="SubjectSemester">
     <Key>
@@ -533,5 +534,85 @@
       <End Role="Syllabus" EntitySet="Syllabus" />
       <End Role="SubjectSemester" EntitySet="SubjectSemesters" />
     </AssociationSet>
+    <EntitySet Name="Documents" EntityType="CollegeBaseModel.Document" />
+    <EntitySet Name="DocumentSupplies" EntityType="CollegeBaseModel.DocumentSupply" />
+    <EntitySet Name="SupplyTypes" EntityType="CollegeBaseModel.SupplyType" />
+    <AssociationSet Name="FK_Document_SubjectProfessor" Association="CollegeBaseModel.FK_Document_SubjectProfessor">
+      <End Role="SubjectProfessor" EntitySet="SubjectProfessors" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentSupply_Document" Association="CollegeBaseModel.FK_DocumentSupply_Document">
+      <End Role="Document" EntitySet="Documents" />
+      <End Role="DocumentSupply" EntitySet="DocumentSupplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentSupply_SupplyType" Association="CollegeBaseModel.FK_DocumentSupply_SupplyType">
+      <End Role="SupplyType" EntitySet="SupplyTypes" />
+      <End Role="DocumentSupply" EntitySet="DocumentSupplies" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectProfessorId" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubjectProfessor" Relationship="CollegeBaseModel.FK_Document_SubjectProfessor" FromRole="Document" ToRole="SubjectProfessor" />
+    <NavigationProperty Name="DocumentSupplies" Relationship="CollegeBaseModel.FK_DocumentSupply_Document" FromRole="Document" ToRole="DocumentSupply" />
+  </EntityType>
+  <EntityType Name="DocumentSupply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentId" Type="Int32" Nullable="false" />
+    <Property Name="SupplyTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Document" Relationship="CollegeBaseModel.FK_DocumentSupply_Document" FromRole="DocumentSupply" ToRole="Document" />
+    <NavigationProperty Name="SupplyType" Relationship="CollegeBaseModel.FK_DocumentSupply_SupplyType" FromRole="DocumentSupply" ToRole="SupplyType" />
+  </EntityType>
+  <EntityType Name="SupplyType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DocumentSupplies" Relationship="CollegeBaseModel.FK_DocumentSupply_SupplyType" FromRole="SupplyType" ToRole="DocumentSupply" />
+  </EntityType>
+  <Association Name="FK_Document_SubjectProfessor">
+    <End Type="CollegeBaseModel.SubjectProfessor" Role="SubjectProfessor" Multiplicity="1" />
+    <End Type="CollegeBaseModel.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectProfessor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="SubjectProfessorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentSupply_Document">
+    <End Type="CollegeBaseModel.Document" Role="Document" Multiplicity="1" />
+    <End Type="CollegeBaseModel.DocumentSupply" Role="DocumentSupply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentSupply">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentSupply_SupplyType">
+    <End Type="CollegeBaseModel.SupplyType" Role="SupplyType" Multiplicity="1" />
+    <End Type="CollegeBaseModel.DocumentSupply" Role="DocumentSupply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplyType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentSupply">
+        <PropertyRef Name="SupplyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

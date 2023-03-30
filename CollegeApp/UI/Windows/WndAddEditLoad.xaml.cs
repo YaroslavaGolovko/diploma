@@ -63,12 +63,23 @@ namespace CollegeApp.UI.Windows
                     load.ProfessorId = id;
                     CollegeBaseEntities.GetContext().SubjectProfessors.Add(load);
                     CollegeBaseEntities.GetContext().SaveChanges();
+
+                    selectedLoad = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.SubjectSemesterId == load.SubjectSemesterId && s.ProfessorId == load.ProfessorId).FirstOrDefault();
                 }
                 else
                 {
                     Professor professor = cmbProfessors.SelectedItem as Professor;
                     int id = professor.Id;
                     selectedLoad.ProfessorId = id;
+                    CollegeBaseEntities.GetContext().SaveChanges();
+                }
+                int selectedLoadId = selectedLoad.Id;
+                if (CollegeBaseEntities.GetContext().Documents.Where(d => d.SubjectProfessorId == selectedLoadId).FirstOrDefault() == null)
+                {
+                    Document newDocument = new Document();
+                    newDocument.SubjectProfessorId = selectedLoad.Id;
+                    newDocument.Note = null;
+                    CollegeBaseEntities.GetContext().Documents.Add(newDocument);
                     CollegeBaseEntities.GetContext().SaveChanges();
                 }
             }

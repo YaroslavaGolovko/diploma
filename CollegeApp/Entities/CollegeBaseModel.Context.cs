@@ -52,5 +52,8 @@ namespace CollegeApp.Entities
         public virtual DbSet<Syllabu> Syllabus { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<DocumentSupply> DocumentSupplies { get; set; }
+        public virtual DbSet<SupplyType> SupplyTypes { get; set; }
     }
 }

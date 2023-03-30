@@ -65,3 +65,7 @@ D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddEditLoad.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddEditLoad.baml
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewLoad.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewLoad.baml
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Pages\PageDocuments.g.cs
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Pages\PageDocuments.baml
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewDocument.g.cs
+D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewDocument.baml

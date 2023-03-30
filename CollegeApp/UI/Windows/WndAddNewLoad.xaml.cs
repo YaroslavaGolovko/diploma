@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace CollegeApp.UI.Windows
 {
@@ -103,6 +104,16 @@ namespace CollegeApp.UI.Windows
                         load.ProfessorId = professorId;
                         CollegeBaseEntities.GetContext().SubjectProfessors.Add(load);
                         CollegeBaseEntities.GetContext().SaveChanges();
+
+                        var _currentLoad = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.ProfessorId == professorId && s.SubjectSemesterId == semester.Id).FirstOrDefault();
+                        if (CollegeBaseEntities.GetContext().Documents.Where(d => d.SubjectProfessorId == _currentLoad.Id).FirstOrDefault() == null)
+                        {
+                            Document newDocument = new Document();
+                            newDocument.SubjectProfessorId = _currentLoad.Id;
+                            newDocument.Note = null;
+                            CollegeBaseEntities.GetContext().Documents.Add(newDocument);
+                            CollegeBaseEntities.GetContext().SaveChanges();
+                        }
                     }
                     if (semester.Semester == 2 && cbSecondSemester.IsChecked == true && semester.SubjectSpeciality.Subject.Name == subjectName)
                     {
@@ -111,6 +122,16 @@ namespace CollegeApp.UI.Windows
                         load.ProfessorId = professorId;
                         CollegeBaseEntities.GetContext().SubjectProfessors.Add(load);
                         CollegeBaseEntities.GetContext().SaveChanges();
+
+                        var _currentLoad = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.ProfessorId == professorId && s.SubjectSemesterId == semester.Id).FirstOrDefault();
+                        if (CollegeBaseEntities.GetContext().Documents.Where(d => d.SubjectProfessorId == _currentLoad.Id).FirstOrDefault() == null)
+                        {
+                            Document newDocument = new Document();
+                            newDocument.SubjectProfessorId = _currentLoad.Id;
+                            newDocument.Note = null;
+                            CollegeBaseEntities.GetContext().Documents.Add(newDocument);
+                            CollegeBaseEntities.GetContext().SaveChanges();
+                        }
                     }
                 }
             }

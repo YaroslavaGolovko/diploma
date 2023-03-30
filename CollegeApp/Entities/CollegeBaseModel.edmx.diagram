@@ -43,6 +43,12 @@
         <AssociationConnector Association="CollegeBaseModel.FK_SubjectProfessor_SubjectSemester" ManuallyRouted="false" />
         <AssociationConnector Association="CollegeBaseModel.FK_SubjectSemester_SubjectSpeciality" ManuallyRouted="false" />
         <AssociationConnector Association="CollegeBaseModel.FK_SubjectSemester_Syllabus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CollegeBaseModel.Document" Width="1.5" PointX="18" PointY="7" />
+        <EntityTypeShape EntityType="CollegeBaseModel.DocumentSupply" Width="1.5" PointX="20.25" PointY="6.875" />
+        <EntityTypeShape EntityType="CollegeBaseModel.SupplyType" Width="1.5" PointX="18" PointY="4.125" />
+        <AssociationConnector Association="CollegeBaseModel.FK_Document_SubjectProfessor" />
+        <AssociationConnector Association="CollegeBaseModel.FK_DocumentSupply_Document" />
+        <AssociationConnector Association="CollegeBaseModel.FK_DocumentSupply_SupplyType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

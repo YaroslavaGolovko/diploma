@@ -28,6 +28,8 @@ namespace CollegeApp.UI
         private ItemMenu _itemSubjects;
         private ItemMenu _itemGroups;
         private ItemMenu _itemProfessors;
+        private ItemMenu _itemDocuments;
+        private ItemMenu _itemData;
         public WndWork()
         {
             InitializeComponent();
@@ -39,21 +41,18 @@ namespace CollegeApp.UI
             menuSchedule.Add(new SubItem("Meetings"));
             var item1 = new ItemMenu("Нагрузка", menuSchedule, PackIconKind.Schedule);*/
 
-            _itemPlans = new ItemMenu("Учебные планы", new UserControl(), PackIconKind.DriveDocument);
-            _itemLoads = new ItemMenu("Нагрузка", new UserControl(), PackIconKind.DocumentSign);
-            _itemSubjects = new ItemMenu("Дисциплины", new UserControl(), PackIconKind.BookAccount);
-            _itemGroups = new ItemMenu("Группы", new UserControl(), PackIconKind.PeopleGroup);
-            _itemProfessors = new ItemMenu("Преподаватели", new UserControl(), PackIconKind.Man);
-            _itemPlans.Type = 1;
-            _itemLoads.Type = 2;
-            _itemSubjects.Type = 3;
-            _itemGroups.Type = 4;
-            _itemProfessors.Type = 5;
+            _itemPlans = new ItemMenu("Учебные планы", new UserControl(), PackIconKind.DriveDocument,1) ;
+            _itemLoads = new ItemMenu("Нагрузка", new UserControl(), PackIconKind.DocumentSign,2);
+            _itemSubjects = new ItemMenu("Дисциплины", new UserControl(), PackIconKind.BookAccount,3);
+            _itemGroups = new ItemMenu("Группы", new UserControl(), PackIconKind.PeopleGroup,4);
+            _itemProfessors = new ItemMenu("Преподаватели", new UserControl(), PackIconKind.Man,5);
+            _itemDocuments = new ItemMenu("Документация", new UserControl(), PackIconKind.FileDocumentBoxTick,6);
             Menu.Children.Add(new UCMenuItem(_itemPlans));
             Menu.Children.Add(new UCMenuItem(_itemLoads));
             Menu.Children.Add(new UCMenuItem(_itemSubjects));
             Menu.Children.Add(new UCMenuItem(_itemGroups));
             Menu.Children.Add(new UCMenuItem(_itemProfessors));
+            Menu.Children.Add(new UCMenuItem(_itemDocuments));
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

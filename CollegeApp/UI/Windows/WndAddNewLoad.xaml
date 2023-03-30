@@ -26,7 +26,7 @@
                           VerticalContentAlignment="Center" FontSize="18" Margin="20 0 0 0" Unchecked="cbSecondSemester_Unchecked"/>
             </StackPanel>
             <Button x:Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click" Margin="0 30 0 0"/>
-            <Button x:Name="btnClose" Content="Закрыть" Margin="0 30 0 30" Click="btnClose_Click"/>
+            <Button x:Name="btnClose" Content="Выйти" Margin="0 30 0 30" Click="btnClose_Click"/>
         </StackPanel>
     </Grid>
 </Window>

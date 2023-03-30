@@ -59,6 +59,10 @@ namespace CollegeApp.UC
             {
                 Control._currentFrame.Navigate(new PageProfessors());
             }
+            if (this.currentItem.Type == 6)
+            {
+                Control._currentFrame.Navigate(new PageDocuments());
+            }
         }
     }
 }

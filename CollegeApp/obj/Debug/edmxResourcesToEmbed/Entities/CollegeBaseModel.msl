@@ -170,5 +170,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="CollegeBaseModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="SubjectProfessorId" ColumnName="SubjectProfessorId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentSupplies">
+      <EntityTypeMapping TypeName="CollegeBaseModel.DocumentSupply">
+        <MappingFragment StoreEntitySet="DocumentSupply">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SupplyTypeId" ColumnName="SupplyTypeId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplyTypes">
+      <EntityTypeMapping TypeName="CollegeBaseModel.SupplyType">
+        <MappingFragment StoreEntitySet="SupplyType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

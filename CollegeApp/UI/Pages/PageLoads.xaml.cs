@@ -59,8 +59,21 @@ namespace CollegeApp.UI
                     if(MessageBox.Show("Вы точно хотите удалить нагрузку?","Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         SubjectProfessor load = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.ProfessorId == _currentRow.ProfessorId && s.SubjectSemesterId == _currentRow.SubjectSemesterId).FirstOrDefault();
+                        int id = load.Id;
+
+                        Document document = CollegeBaseEntities.GetContext().Documents.Where(d => d.SubjectProfessorId == id).FirstOrDefault();
+                        if (document != null)
+                        {
+                            CollegeBaseEntities.GetContext().Documents.Remove(document);
+                            CollegeBaseEntities.GetContext().SaveChanges();
+                        }
+
+                        load = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.ProfessorId == _currentRow.ProfessorId && s.SubjectSemesterId == _currentRow.SubjectSemesterId).FirstOrDefault();
+                        id = load.Id;
                         CollegeBaseEntities.GetContext().SubjectProfessors.Remove(load);
                         CollegeBaseEntities.GetContext().SaveChanges();
+
+
                         MessageBox.Show("Нагрузка удалена!", "Успешное удаление", MessageBoxButton.OK, MessageBoxImage.Information);
                         GetLoad();
                     }

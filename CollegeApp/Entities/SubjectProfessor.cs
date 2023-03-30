@@ -14,11 +14,19 @@ namespace CollegeApp.Entities
     
     public partial class SubjectProfessor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SubjectProfessor()
+        {
+            this.Documents = new HashSet<Document>();
+        }
+    
         public int Id { get; set; }
         public int SubjectSemesterId { get; set; }
         public int ProfessorId { get; set; }
     
         public virtual Professor Professor { get; set; }
         public virtual SubjectSemester SubjectSemester { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }
