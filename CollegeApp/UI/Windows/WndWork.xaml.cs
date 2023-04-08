@@ -53,6 +53,7 @@ namespace CollegeApp.UI
             Menu.Children.Add(new UCMenuItem(_itemGroups));
             Menu.Children.Add(new UCMenuItem(_itemProfessors));
             Menu.Children.Add(new UCMenuItem(_itemDocuments));
+            tblUser.Text ="Пользователь: "+ Control._currentUser.Professor.FullName;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

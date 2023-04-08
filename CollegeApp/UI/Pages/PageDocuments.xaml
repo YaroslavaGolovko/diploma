@@ -11,7 +11,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*" MinHeight="480"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" MinHeight="430"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Документация" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"/>
@@ -27,7 +28,7 @@
             <ComboBox Name="cmbAcademicYear" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
             <ComboBox Name="cmbProfessors" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите преподавателя" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbProfessors_SelectionChanged" DisplayMemberPath="FullName"/>
         </StackPanel>
-        <DataGrid x:Name="DGridDocuments" Grid.Row="2" VerticalAlignment="Top" Margin="10 10 10 40" HorizontalAlignment="Center"
+        <DataGrid x:Name="DGridDocuments" Grid.Row="3" VerticalAlignment="Top" Margin="10 10 10 40" HorizontalAlignment="Center"
                   RowHeight="110" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
                   CanUserReorderColumns="False" CanUserResizeColumns="False" Visibility="Hidden" FontFamily="Cambria">
             <DataGrid.Columns>
@@ -91,9 +92,9 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
-                                <TextBlock HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
+                                <TextBox Background="Transparent" x:Name="tbWPElectronic" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbWPElectronic_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding WorkProgramElectronicIsExist}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible"/>
@@ -105,8 +106,8 @@
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -129,9 +130,9 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
-                                <TextBlock HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
+                                <TextBox Background="Transparent" x:Name="tbWPTypewriter" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbWPTypewriter_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding WorkProgramTypewriterIsExist}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible"/>
@@ -143,8 +144,8 @@
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -167,9 +168,9 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
-                                <TextBlock HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
+                                <TextBox Background="Transparent" x:Name="tbCTPElectronic" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbCTPElectronic_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding CalendarThematicPlanElectronicIsExist}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible"/>
@@ -181,8 +182,8 @@
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -205,9 +206,9 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
-                                <TextBlock HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
+                                <TextBox Background="Transparent" x:Name="tbCTPTypewriter" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbCTPTypewriter_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding CalendarThematicPlanTypewriterIsExist}" Value="True">
                                                     <Setter Property="Visibility" Value="Visible"/>
@@ -219,8 +220,8 @@
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -234,10 +235,13 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="3">
-            <Button IsEnabled="False" x:Name="btnAddRow" Grid.Row="3" Content="Добавить документ" Click="btnAddRow_Click" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <Button IsEnabled="False" x:Name="btnDeleteRow" Grid.Row="3" Content="Удалить документ" Click="btnDeleteRow_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="30 0 0 0"/>
-            <Button x:Name="btnSave" Grid.Row="3" Content="Сохранить изменения" Click="btnSave_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="30 0 10 0" IsEnabled="False"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="4">
+            <Button x:Name="btnPrint" Content="Распечатать" Click="btnPrint_Click" IsEnabled="False"/>
+            <Button x:Name="btnSave" Content="Сохранить изменения" Click="btnSave_Click" Margin="30 0 10 0" IsEnabled="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button IsEnabled="False" x:Name="btnAddRow" Grid.Row="3" Content="Добавить документ" Click="btnAddRow_Click"/>
+            <Button IsEnabled="False" x:Name="btnDeleteRow" Grid.Row="3" Content="Удалить документ" Click="btnDeleteRow_Click" Margin="30 0 0 0"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -2,6 +2,7 @@
 FD:\диплом\CollegeApp\CollegeApp\App.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UC\UCMenuItem.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UC\UCSubject.xaml;;
+FD:\диплом\CollegeApp\CollegeApp\UI\Pages\PageDocuments.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Pages\PageGroups.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Pages\PageLoads.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Pages\PagePlans.xaml;;
@@ -11,6 +12,7 @@ FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddEditGroup.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddEditLoad.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddEditProfessor.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewCategory.xaml;;
+FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewDocument.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewIndex.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewLoad.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewSubject.xaml;;
@@ -18,6 +20,4 @@ FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddPlan.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddSubject.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndStart.xaml;;
 FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndWork.xaml;;
-FD:\диплом\CollegeApp\CollegeApp\UI\Pages\PageDocuments.xaml;;
-FD:\диплом\CollegeApp\CollegeApp\UI\Windows\WndAddNewDocument.xaml;;
 

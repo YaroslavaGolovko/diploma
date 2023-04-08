@@ -69,3 +69,5 @@ D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Pages\PageDocuments.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Pages\PageDocuments.baml
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewDocument.g.cs
 D:\диплом\CollegeApp\CollegeApp\obj\Debug\UI\Windows\WndAddNewDocument.baml
+D:\диплом\CollegeApp\CollegeApp\bin\Debug\DevExpress.Data.v22.2.dll
+D:\диплом\CollegeApp\CollegeApp\bin\Debug\DevExpress.Data.v22.2.xml

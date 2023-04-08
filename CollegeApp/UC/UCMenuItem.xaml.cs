@@ -64,5 +64,22 @@ namespace CollegeApp.UC
                 Control._currentFrame.Navigate(new PageDocuments());
             }
         }
+
+        private void ListViewMenu_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SubItem item = ListViewMenu.SelectedItem as SubItem;
+            if (item.Type == 1)
+            {
+                Control._currentFrame.Navigate(new PageSubjects());
+            }
+            if (item.Type == 2)
+            {
+                Control._currentFrame.Navigate(new PageGroups());
+            }
+            if (item.Type == 3)
+            {
+                Control._currentFrame.Navigate(new PageProfessors());
+            }
+        }
     }
 }

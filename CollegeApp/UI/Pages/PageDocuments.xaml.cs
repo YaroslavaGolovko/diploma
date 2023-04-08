@@ -1,5 +1,8 @@
 ﻿using CollegeApp.Entities;
 using CollegeApp.UI.Windows;
+using DevExpress.Utils.CommonDialogs.Internal;
+using Microsoft.Office.Interop.Word;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
@@ -15,13 +18,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using word = Microsoft.Office.Interop.Word;
 
 namespace CollegeApp.UI.Pages
 {
     /// <summary>
     /// Логика взаимодействия для PageDocuments.xaml
     /// </summary>
-    public partial class PageDocuments : Page
+    public partial class PageDocuments : System.Windows.Controls.Page
     {
         private string specialityId;
         private int qualificationId;
@@ -89,56 +93,56 @@ namespace CollegeApp.UI.Pages
 
         private void cbWPElectronic_Checked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.WorkProgramElectronicIsExist = true;
             btnSave.IsEnabled = true;
         }
 
         private void cbWPElectronic_Unchecked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.WorkProgramElectronicIsExist = false;
             btnSave.IsEnabled = true;
         }
 
         private void cbWPTypewriter_Checked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.WorkProgramTypewriterIsExist = true;
             btnSave.IsEnabled = true;
         }
 
         private void cbWPTypewriter_Unchecked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.WorkProgramTypewriterIsExist = false;
             btnSave.IsEnabled = true;
         }
 
         private void cbCTPElectronic_Checked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.CalendarThematicPlanElectronicIsExist = true;
             btnSave.IsEnabled = true;
         }
 
         private void cbCTPElectronic_Unchecked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.CalendarThematicPlanElectronicIsExist = false;
             btnSave.IsEnabled = true;
         }
 
         private void cbCTPTypewriter_Checked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.CalendarThematicPlanTypewriterIsExist = true;
             btnSave.IsEnabled = true;
         }
 
         private void cbCTPTypewriter_Unchecked(object sender, RoutedEventArgs e)
         {
-            DocumentRow row = (sender as CheckBox).DataContext as DocumentRow;
+            DocumentRow row = (sender as System.Windows.Controls.CheckBox).DataContext as DocumentRow;
             row.CalendarThematicPlanTypewriterIsExist = false;
             btnSave.IsEnabled = true;
         }
@@ -185,16 +189,17 @@ namespace CollegeApp.UI.Pages
                 if (documents.Count > 0)
                 {
                     _currentDocuments = documents;
-                    DGridDocuments.ItemsSource = GetRows(documents);
+                    DGridDocuments.ItemsSource = DocumentRow.GetRows(documents);
                     DGridDocuments.Visibility = Visibility.Visible;
                     btnAddRow.IsEnabled = true;
                     btnDeleteRow.IsEnabled = true;
+                    btnPrint.IsEnabled = true;
                 }
                 else
                 {
                     DGridDocuments.Visibility = Visibility.Hidden;
-                    btnAddRow.IsEnabled = false;
                     btnDeleteRow.IsEnabled = false;
+                    btnPrint.IsEnabled = true;
                 }
             }
             else
@@ -202,209 +207,13 @@ namespace CollegeApp.UI.Pages
                 DGridDocuments.Visibility = Visibility.Hidden;
                 btnAddRow.IsEnabled = false;
                 btnDeleteRow.IsEnabled = false;
+                btnPrint.IsEnabled = true;
             }
-        }
-
-        private List<DocumentRow> GetRows(List<SubjectProfessor> documents)
-        {
-            var rows = new List<DocumentRow>();
-            foreach (var document in documents)
-            {
-                DocumentRow row = new DocumentRow();
-                row.Id = document.Id;
-                row.SubjectSemesterId = document.SubjectSemesterId;
-                var _currentDocument = document.Documents.FirstOrDefault();
-                row.DocumentId = _currentDocument.Id;
-                row.ProfessorFullName = document.Professor.FullName;
-                row.ProfessorId = document.ProfessorId;
-                row.SubjectName = document.SubjectSemester.SubjectSpeciality.Subject.Name;
-                row.Note = _currentDocument.Note;
-                row.Syllabus = document.SubjectSemester.Syllabu;
-                row.SpecialityId = row.Syllabus.Group.SpecialityId;
-                row.Qualification = row.Syllabus.Group.Qualification.Name;
-                row.AcademicYear = row.Syllabus.AcademicYear;
-                row.StartYear = row.Syllabus.Group.StartYear;
-                row.Semester = document.SubjectSemester.Semester;
-                int cours = Int32.Parse(row.AcademicYear.Substring(0, 4)) - row.StartYear;
-                switch (cours)
-                {
-                    case 0:
-                        if (document.SubjectSemester.Semester == 1)
-                            row.SemesterVisible = 1;
-                        if (document.SubjectSemester.Semester == 2)
-                            row.SemesterVisible = 2;
-                        break;
-
-                    case 1:
-                        if (document.SubjectSemester.Semester == 1)
-                            row.SemesterVisible = 3;
-                        if (document.SubjectSemester.Semester == 2)
-                            row.SemesterVisible = 4;
-                        break;
-
-                    case 2:
-                        if (document.SubjectSemester.Semester == 1)
-                            row.SemesterVisible = 5;
-                        if (document.SubjectSemester.Semester == 2)
-                            row.SemesterVisible = 6;
-                        break;
-
-                    case 3:
-                        if (document.SubjectSemester.Semester == 1)
-                            row.SemesterVisible = 7;
-                        if (document.SubjectSemester.Semester == 2)
-                            row.SemesterVisible = 8;
-                        break;
-                }
-                row.WorkProgramElectronicIsExist = false;
-                row.WorkProgramTypewriterIsExist = false;
-                row.CalendarThematicPlanElectronicIsExist = false;
-                row.CalendarThematicPlanTypewriterIsExist = false;
-                var _currentWorkProgramElectronic = _currentDocument.DocumentSupplies.Where(s => s.SupplyTypeId == 1).FirstOrDefault();
-                if (_currentWorkProgramElectronic != null)
-                {
-                    row.WorkProgramElectronicIsExist = true;
-                    row.WorkProgramElectronicId = _currentWorkProgramElectronic.Id;
-                    row.WorkProgramElectronicDate = _currentWorkProgramElectronic.Date;
-                }
-                var _currentWorkProgramTypewriter = _currentDocument.DocumentSupplies.Where(s => s.SupplyTypeId == 2).FirstOrDefault();
-                if (_currentWorkProgramTypewriter != null)
-                {
-                    row.WorkProgramTypewriterIsExist = true;
-                    row.WorkProgramTypewriterId = _currentWorkProgramTypewriter.Id;
-                    row.WorkProgramTypewriterDate = _currentWorkProgramTypewriter.Date;
-                }
-                var _currentCalendarThematicPlanElectronic = _currentDocument.DocumentSupplies.Where(s => s.SupplyTypeId == 3).FirstOrDefault();
-                if (_currentCalendarThematicPlanElectronic != null)
-                {
-                    row.CalendarThematicPlanElectronicIsExist = true;
-                    row.CalendarThematicPlanElectronicId = _currentCalendarThematicPlanElectronic.Id;
-                    row.CalendarThematicPlanElectronicDate = _currentCalendarThematicPlanElectronic.Date;
-                }
-                var _currentCalendarThematicPlanTypewriter = _currentDocument.DocumentSupplies.Where(s => s.SupplyTypeId == 4).FirstOrDefault();
-                if (_currentCalendarThematicPlanTypewriter != null)
-                {
-                    row.CalendarThematicPlanTypewriterIsExist = true;
-                    row.CalendarThematicPlanTypewriterId = _currentCalendarThematicPlanTypewriter.Id;
-                    row.CalendarThematicPlanTypewriterDate = _currentCalendarThematicPlanTypewriter.Date;
-                }
-                if(rows.Where(r=>r.SubjectSemesterId==row.SubjectSemesterId && r.ProfessorId == row.ProfessorId || (r.ProfessorId==row.ProfessorId && r.SpecialityId==row.SpecialityId && r.Qualification==row.Qualification && r.StartYear==row.StartYear && r.AcademicYear==r.AcademicYear && r.Semester==row.Semester && r.SemesterVisible==row.SemesterVisible && r.SubjectName==row.SubjectName)).FirstOrDefault() == null)
-                {
-                    rows.Add(row);
-                }
-            }
-            return rows;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            List<DocumentRow> rows = DGridDocuments.ItemsSource as List<DocumentRow>;
-            foreach (var row in rows)
-            {
-                var _currentSubjectProfessors = CollegeBaseEntities.GetContext().Documents.Where(s => s.SubjectProfessor.ProfessorId == row.ProfessorId && s.SubjectProfessor.SubjectSemester.Semester == row.Semester && s.SubjectProfessor.SubjectSemester.Syllabu.Group.SpecialityId == row.SpecialityId && s.SubjectProfessor.SubjectSemester.Syllabu.Group.Qualification.Name == row.Qualification && s.SubjectProfessor.SubjectSemester.Syllabu.AcademicYear == row.AcademicYear && s.SubjectProfessor.SubjectSemester.Syllabu.Group.StartYear == row.StartYear).ToList();
-                foreach(var item in _currentSubjectProfessors)
-                {
-                    if (row.WorkProgramElectronicIsExist == true)
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 1).FirstOrDefault();
-                        if (supply == null)
-                        {
-                            DocumentSupply documentSupply = new DocumentSupply();
-                            documentSupply.DocumentId = item.Id;
-                            documentSupply.SupplyTypeId = 1;
-                            documentSupply.Date = DateTime.Now.Date;
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Add(documentSupply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    else
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 1).FirstOrDefault();
-                        if (supply != null)
-                        {
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Remove(supply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    if (row.WorkProgramTypewriterIsExist == true)
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 2).FirstOrDefault();
-                        if (supply == null)
-                        {
-                            DocumentSupply documentSupply = new DocumentSupply();
-                            documentSupply.DocumentId = item.Id;
-                            documentSupply.SupplyTypeId = 2;
-                            documentSupply.Date = DateTime.Now.Date;
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Add(documentSupply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    else
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 2).FirstOrDefault();
-                        if (supply != null)
-                        {
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Remove(supply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    if (row.CalendarThematicPlanElectronicIsExist == true)
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 3).FirstOrDefault();
-                        if (supply == null)
-                        {
-                            DocumentSupply documentSupply = new DocumentSupply();
-                            documentSupply.DocumentId = item.Id;
-                            documentSupply.SupplyTypeId = 3;
-                            documentSupply.Date = DateTime.Now.Date;
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Add(documentSupply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    else
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 3).FirstOrDefault();
-                        if (supply != null)
-                        {
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Remove(supply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    if (row.CalendarThematicPlanTypewriterIsExist == true)
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 4).FirstOrDefault();
-                        if (supply == null)
-                        {
-                            DocumentSupply documentSupply = new DocumentSupply();
-                            documentSupply.DocumentId = item.Id;
-                            documentSupply.SupplyTypeId = 4;
-                            documentSupply.Date = DateTime.Now.Date;
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Add(documentSupply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    else
-                    {
-                        var supply = CollegeBaseEntities.GetContext().DocumentSupplies.Where(d => d.DocumentId == item.Id && d.SupplyTypeId == 4).FirstOrDefault();
-                        if (supply != null)
-                        {
-                            CollegeBaseEntities.GetContext().DocumentSupplies.Remove(supply);
-                            CollegeBaseEntities.GetContext().SaveChanges();
-                        }
-                    }
-                    if (row.Note!=null)
-                    {
-                        item.Note = row.Note;
-                    }
-                    else
-                    {
-                        item.Note = null;
-                    }
-                    CollegeBaseEntities.GetContext().SaveChanges();
-                }
-                CollegeBaseEntities.GetContext().SaveChanges();
-            }
-            CollegeBaseEntities.GetContext().SaveChanges();
+            DocumentRow.SaveRow(DGridDocuments);
             GetDataGrid();
         }
 
@@ -458,6 +267,75 @@ namespace CollegeApp.UI.Pages
             WndAddNewDocument window = new WndAddNewDocument(specialityId, qualificationId, startYear, academicYear);
             window.ShowDialog();
             GetDataGrid();
+        }
+
+        private void tbWPTypewriter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                DocumentRow row = (sender as TextBox).DataContext as DocumentRow;
+                string text = (sender as TextBox).Text;
+                DateTime date = DateTime.Parse(text);
+                if (text != null)
+                {
+                    row.WorkProgramTypewriterDate = date;
+                }
+                btnSave.IsEnabled = true;
+            }
+            catch { return; }
+        }
+
+        private void tbWPElectronic_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                DocumentRow row = (sender as TextBox).DataContext as DocumentRow;
+                string text = (sender as TextBox).Text;
+                DateTime date = DateTime.Parse(text);
+                if (text != null)
+                {
+                    row.WorkProgramElectronicDate = date;
+                }
+                btnSave.IsEnabled = true;
+            }
+            catch { return; }
+        }
+
+        private void tbCTPElectronic_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                DocumentRow row = (sender as TextBox).DataContext as DocumentRow;
+                string text = (sender as TextBox).Text;
+                DateTime date = DateTime.Parse(text);
+                if (text != null)
+                {
+                    row.CalendarThematicPlanElectronicDate = date;
+                }
+                btnSave.IsEnabled = true;
+            }
+            catch { return; }
+        }
+
+        private void tbCTPTypewriter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                DocumentRow row = (sender as TextBox).DataContext as DocumentRow;
+                string text = (sender as TextBox).Text;
+                DateTime date = DateTime.Parse(text);
+                if (text != null)
+                {
+                    row.CalendarThematicPlanTypewriterDate = date;
+                }
+                btnSave.IsEnabled = true;
+            }
+            catch { return; }
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            DocumentRow.PrintRows(DGridDocuments, cmbSpecialities, cmbQualifications, cmbStartYear, cmbAcademicYear, cmbProfessors);
         }
     }
 }
