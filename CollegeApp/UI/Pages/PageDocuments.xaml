@@ -19,13 +19,6 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <ComboBox Name="cmbSpecialities" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите специальность" Foreground="Gray" SelectionChanged="cmbSpecialities_SelectionChanged" DisplayMemberPath="Id"/>
             <ComboBox Name="cmbQualifications" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите квалификацию" Foreground="Gray" SelectionChanged="cmbQualifications_SelectionChanged" DisplayMemberPath="Name" Margin="30 0 0 0"/>
-            <ComboBox Name="cmbStartYear" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите год набора" Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged" Margin="30 0 0 0">
-                <TextBlock>2019</TextBlock>
-                <TextBlock>2020</TextBlock>
-                <TextBlock>2021</TextBlock>
-                <TextBlock>2022</TextBlock>
-            </ComboBox>
-            <ComboBox Name="cmbAcademicYear" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
             <ComboBox Name="cmbProfessors" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите преподавателя" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbProfessors_SelectionChanged" DisplayMemberPath="FullName"/>
         </StackPanel>
         <DataGrid x:Name="DGridDocuments" Grid.Row="3" VerticalAlignment="Top" Margin="10 10 10 40" HorizontalAlignment="Center"
@@ -240,8 +233,15 @@
             <Button x:Name="btnSave" Content="Сохранить изменения" Click="btnSave_Click" Margin="30 0 10 0" IsEnabled="False"/>
         </StackPanel>
         <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button IsEnabled="False" x:Name="btnAddRow" Grid.Row="3" Content="Добавить документ" Click="btnAddRow_Click"/>
-            <Button IsEnabled="False" x:Name="btnDeleteRow" Grid.Row="3" Content="Удалить документ" Click="btnDeleteRow_Click" Margin="30 0 0 0"/>
+            <ComboBox Name="cmbStartYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите год набора" Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged" Margin="30 0 0 0">
+                <TextBlock>2019</TextBlock>
+                <TextBlock>2020</TextBlock>
+                <TextBlock>2021</TextBlock>
+                <TextBlock>2022</TextBlock>
+            </ComboBox>
+            <ComboBox Name="cmbAcademicYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
+            <Button IsEnabled="False" x:Name="btnAddRow" Grid.Row="3" Content="Добавить документ" Click="btnAddRow_Click" Margin="30 0 0 0"/>
+            <Button IsEnabled="False" x:Name="btnDeleteRow" Grid.Row="3" Content="Удалить документ" Click="btnDeleteRow_Click" Margin="30 0 10 0"/>
         </StackPanel>
     </Grid>
 </Page>
