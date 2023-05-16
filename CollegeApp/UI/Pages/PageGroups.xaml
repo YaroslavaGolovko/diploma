@@ -27,12 +27,12 @@
                         <Binding Path="SpecialityId"/>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="350" Header="Квалификация">
+                <DataGridTextColumn Width="300" Header="Квалификация">
                     <DataGridTextColumn.Binding>
                         <Binding Path="Qualification.Name"/>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Год набора">
+                <DataGridTextColumn Width="110" Header="Год набора">
                     <DataGridTextColumn.Binding>
                         <Binding Path="StartYear"/>
                     </DataGridTextColumn.Binding>

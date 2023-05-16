@@ -149,7 +149,8 @@ namespace CollegeApp.UI.Pages
 
         private void GetDataGrid()
         {
-            if(cmbProfessors.SelectedItem!=null || (cmbSpecialities.SelectedItem!=null && cmbQualifications.SelectedItem!=null && cmbAcademicYear.SelectedItem!=null && cmbStartYear.SelectedItem != null))
+            if(cmbProfessors.SelectedItem!=null || (cmbSpecialities.SelectedItem!=null 
+                && cmbQualifications.SelectedItem!=null && cmbAcademicYear.SelectedItem!=null && cmbStartYear.SelectedItem != null))
             {
                 var documents= CollegeBaseEntities.GetContext().SubjectProfessors.ToList();
                 if (cmbProfessors.SelectedItem != null)
@@ -213,7 +214,7 @@ namespace CollegeApp.UI.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            DocumentRow.SaveRow(DGridDocuments);
+            DocumentRow.SaveRows(DGridDocuments);
             GetDataGrid();
         }
 

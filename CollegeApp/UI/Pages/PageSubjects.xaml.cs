@@ -31,7 +31,7 @@ namespace CollegeApp.UI
 
         private void btnAddSubject_Click(object sender, RoutedEventArgs e)
         {
-            WndAddNewSubject window = new WndAddNewSubject();
+            WndAddEditSubject window = new WndAddEditSubject(null);
             window.ShowDialog();
             DGridSubjects.ItemsSource = CollegeBaseEntities.GetContext().Subjects.ToList();
         }
@@ -40,6 +40,12 @@ namespace CollegeApp.UI
         {
             WndAddNewCategory window = new WndAddNewCategory();
             window.ShowDialog();
+        }
+
+        private void btnAddIndex_Click(object sender, RoutedEventArgs e)
+        {
+            WndAddNewIndex wnd = new WndAddNewIndex();
+            wnd.ShowDialog();
         }
     }
 }

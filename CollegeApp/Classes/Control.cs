@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace CollegeApp.Classes
 {
-    internal class Control
+    public class Control
     {
         public static Frame _currentFrame { get; set; }
         public static User _currentUser { get; set; }

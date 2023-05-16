@@ -1514,13 +1514,6 @@ namespace CollegeApp.Entities
                         CollegeBaseEntities.GetContext().SaveChanges();
                         MessageBox.Show("Дисциплина удалена из учебного плана!");
                     }
-                    /*var selectedSubject = CollegeBaseEntities.GetContext().SubjectSpecialities.Where(s => s.Id == selectedRow.IdSubjectSpeciality).FirstOrDefault();
-                    if (selectedSubject != null)
-                    {
-                        CollegeBaseEntities.GetContext().SubjectSpecialities.Remove(selectedSubject);
-                        CollegeBaseEntities.GetContext().SaveChanges();
-                        
-                    }*/
                 }
             }
             else

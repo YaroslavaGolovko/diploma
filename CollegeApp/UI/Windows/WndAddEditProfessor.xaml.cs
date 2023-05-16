@@ -45,7 +45,8 @@ namespace CollegeApp.UI.Windows
                 _currentProfessor.LastName = tbLastName.Text;
                 _currentProfessor.FirstName = tbFirstName.Text;
                 _currentProfessor.Patronymic = tbPatronymic.Text;
-                if (CollegeBaseEntities.GetContext().Professors.Where(p => p.LastName == _currentProfessor.LastName && p.FirstName==_currentProfessor.FirstName && p.Patronymic==_currentProfessor.Patronymic).FirstOrDefault() != null)
+                if (CollegeBaseEntities.GetContext().Professors.Where(p => p.LastName == _currentProfessor.LastName 
+                && p.FirstName==_currentProfessor.FirstName && p.Patronymic==_currentProfessor.Patronymic).FirstOrDefault() != null)
                 {
                     MessageBox.Show("Данный преподаватель уже добавлен!", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -60,7 +61,8 @@ namespace CollegeApp.UI.Windows
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При сохранении данных возникли неполадки. Проверьте вводимые данные.", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("При сохранении данных возникли неполадки. Проверьте вводимые данные.", 
+                    "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

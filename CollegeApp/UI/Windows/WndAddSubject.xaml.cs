@@ -1,4 +1,5 @@
 ﻿using CollegeApp.Entities;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace CollegeApp.UI
     /// <summary>
     /// Логика взаимодействия для WndAddSubject.xaml
     /// </summary>
-    public partial class WndAddSubject : Window
+    public partial class WndAddSubject : System.Windows.Window
     {
         private string _currentSpecialityId;
         private int _currentPlanId;
@@ -48,6 +49,19 @@ namespace CollegeApp.UI
             }
         }
 
+        private void AddSubjectSpeciality(int subjectId, int categoryId, int startYear)
+        {
+            SubjectSpeciality subject = new SubjectSpeciality();
+            subject.SpecialityId = _currentSpecialityId;
+            subject.SubjectId = subjectId;
+            subject.CategoryId = categoryId;
+            subject.IndexName = index;
+            subject.QualificationId = _currentQualificationId;
+            subject.StartYear = startYear;
+            CollegeBaseEntities.GetContext().SubjectSpecialities.Add(subject);
+            CollegeBaseEntities.GetContext().SaveChanges();
+        }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -62,24 +76,24 @@ namespace CollegeApp.UI
                         int categoryId = selectedCategory.Id;
                         var selectedSubject = cmbSubjects.SelectedItem as Subject;
                         int subjectId = selectedSubject.Id;
-                        var _currentSubject = CollegeBaseEntities.GetContext().SubjectSpecialities.Where(s => s.SpecialityId == _currentSpecialityId && s.StartYear == startYear && s.QualificationId == _currentQualificationId && s.CategoryId == categoryId && s.SubjectId == subjectId && s.IndexName == index).FirstOrDefault();
+                        var _currentSubject = CollegeBaseEntities.GetContext().SubjectSpecialities.
+                            Where(s => s.SpecialityId == _currentSpecialityId && s.StartYear == startYear 
+                            && s.QualificationId == _currentQualificationId && s.CategoryId == categoryId 
+                            && s.SubjectId == subjectId && s.IndexName == index).FirstOrDefault();
                         if (_currentSubject == null)
                         {
-                            SubjectSpeciality subject = new SubjectSpeciality();
-                            subject.SpecialityId = _currentSpecialityId;
-                            subject.SubjectId = subjectId;
-                            subject.CategoryId = categoryId;
-                            subject.IndexName = index;
-                            subject.QualificationId = _currentQualificationId;
-                            subject.StartYear = startYear;
-                            CollegeBaseEntities.GetContext().SubjectSpecialities.Add(subject);
-                            CollegeBaseEntities.GetContext().SaveChanges();
+                            AddSubjectSpeciality(subjectId, categoryId, startYear);
                         }
-                        _currentSubject = CollegeBaseEntities.GetContext().SubjectSpecialities.Where(s => s.SpecialityId == _currentSpecialityId && s.StartYear == startYear && s.QualificationId == _currentQualificationId && s.CategoryId == categoryId && s.SubjectId == subjectId && s.IndexName == index).FirstOrDefault();
+                        _currentSubject = CollegeBaseEntities.GetContext().SubjectSpecialities.
+                            Where(s => s.SpecialityId == _currentSpecialityId && s.StartYear == startYear 
+                            && s.QualificationId == _currentQualificationId && s.CategoryId == categoryId 
+                            && s.SubjectId == subjectId && s.IndexName == index).FirstOrDefault();
                         int _currentId = _currentSubject.Id;
                         if (cbFirstSemester.IsChecked == true)
                         {
-                            SubjectSemester selectedSemester = CollegeBaseEntities.GetContext().SubjectSemesters.Where(s => s.SubjectSpecialityId == _currentId && s.Semester == 1 && s.SyllabusId == _currentPlanId).FirstOrDefault();
+                            SubjectSemester selectedSemester = CollegeBaseEntities.GetContext().SubjectSemesters.
+                                Where(s => s.SubjectSpecialityId == _currentId && s.Semester == 1 
+                                && s.SyllabusId == _currentPlanId).FirstOrDefault();
                             if (selectedSemester == null)
                             {
                                 SubjectSemester semester = new SubjectSemester();
@@ -91,7 +105,8 @@ namespace CollegeApp.UI
                                 CollegeBaseEntities.GetContext().SaveChanges();
                                 if (isShown == false)
                                 {
-                                    MessageBox.Show("Дисциплина успешно добавлена в учебный план!", "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    MessageBox.Show("Дисциплина успешно добавлена в учебный план!", 
+                                        "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
                                     btnSave.IsEnabled = false;
                                     isShown = true;
                                 }
@@ -100,14 +115,16 @@ namespace CollegeApp.UI
                             {
                                 if (isShown == false)
                                 {
-                                    MessageBox.Show("Данная дисциплина уже добавлена в учебный план.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Данная дисциплина уже добавлена в учебный план.", 
+                                        "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                                     isShown = true;
                                 }
                             }
                         }
                         if (cbSecondSemester.IsChecked == true)
                         {
-                            SubjectSemester selectedSemester = CollegeBaseEntities.GetContext().SubjectSemesters.Where(s => s.SubjectSpecialityId == _currentId && s.Semester == 2 && s.SyllabusId == _currentPlanId).FirstOrDefault();
+                            SubjectSemester selectedSemester = CollegeBaseEntities.GetContext().SubjectSemesters.
+                                Where(s => s.SubjectSpecialityId == _currentId && s.Semester == 2 && s.SyllabusId == _currentPlanId).FirstOrDefault();
                             if (selectedSemester == null)
                             {
                                 SubjectSemester semester = new SubjectSemester();
@@ -119,7 +136,8 @@ namespace CollegeApp.UI
                                 CollegeBaseEntities.GetContext().SaveChanges();
                                 if (isShown == false)
                                 {
-                                    MessageBox.Show("Дисциплина успешно добавлена в учебный план!", "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    MessageBox.Show("Дисциплина успешно добавлена в учебный план!", 
+                                        "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
                                     btnSave.IsEnabled = false;
                                     isShown = true;
                                 }
@@ -128,7 +146,8 @@ namespace CollegeApp.UI
                             {
                                 if (isShown == false)
                                 {
-                                    MessageBox.Show("Данная дисциплина уже добавлена в учебный план.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Данная дисциплина уже добавлена в учебный план.", 
+                                        "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                                     isShown = true;
                                 }
                             }
@@ -141,7 +160,9 @@ namespace CollegeApp.UI
             {
                 if (isShown == false)
                 {
-                    MessageBox.Show("При добавлении дисциплины возникли неполадки. Проверьте вводимые данные, а также наличие добавляемой дисциплины в учебном плане.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("При добавлении дисциплины возникли неполадки. " +
+                        "Проверьте вводимые данные, а также наличие добавляемой дисциплины в учебном плане.", 
+                        "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                     btnSave.IsEnabled = true;
                 }
             }
@@ -189,7 +210,7 @@ namespace CollegeApp.UI
 
         private void btnAddSubject_Click(object sender, RoutedEventArgs e)
         {
-            WndAddNewSubject window = new WndAddNewSubject();
+            WndAddEditSubject window = new WndAddEditSubject(null);
             window.ShowDialog();
             var subjects = CollegeBaseEntities.GetContext().Subjects.OrderBy(s => s.Name).ToList();
             cmbSubjects.ItemsSource = subjects;

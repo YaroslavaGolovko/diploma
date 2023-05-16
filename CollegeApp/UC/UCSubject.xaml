@@ -10,8 +10,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="270"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0" TextWrapping="Wrap" FontSize="16"/>
-        <Button x:Name="btnDeleteSubject" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Удалить дисциплину" Grid.Column="1" Click="btnDeleteSubject_Click"/>
+        <Button x:Name="btnUpdateSubject" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Редактировать дисциплину" Grid.Column="1" Click="btnUpdateSubject_Click"/>
+        <Button x:Name="btnDeleteSubject" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Удалить дисциплину" Grid.Column="2" Click="btnDeleteSubject_Click"/>
     </Grid>
 </UserControl>

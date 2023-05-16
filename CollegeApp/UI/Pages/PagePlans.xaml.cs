@@ -336,11 +336,13 @@ namespace CollegeApp.UI
             try
             {
                 Entities.SubjectRow.SaveRow(_currentRows, _requiredPlan);
-                MessageBox.Show("Данные успешно обновлены!", "Успешное сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Данные успешно обновлены!", 
+                    "Успешное сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(Exception ex)
             {
-                MessageBox.Show("При сохранении данных возникли неполадки. Повторите попытку позже.", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("При сохранении данных возникли неполадки. " +
+                    "Повторите попытку позже.", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

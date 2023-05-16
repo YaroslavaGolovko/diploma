@@ -15,15 +15,19 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Учебная нагрузка" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ComboBox Name="cmbSpecialities" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите специальность" Foreground="Gray" SelectionChanged="cmbSpecialities_SelectionChanged" DisplayMemberPath="Id"/>
-            <ComboBox Name="cmbQualifications" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите квалификацию" Foreground="Gray" SelectionChanged="cmbQualifications_SelectionChanged" Margin="30 0 0 0" DisplayMemberPath="Name"/>
-            <ComboBox Name="cmbStartYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите год набора" Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged" Margin="30 0 0 0">
+            <ComboBox Name="cmbSpecialities" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите специальность" 
+                      Foreground="Gray" SelectionChanged="cmbSpecialities_SelectionChanged" DisplayMemberPath="Id"/>
+            <ComboBox Name="cmbQualifications" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите квалификацию" 
+                      Foreground="Gray" SelectionChanged="cmbQualifications_SelectionChanged" Margin="30 0 0 0" DisplayMemberPath="Name"/>
+            <ComboBox Name="cmbStartYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите год набора" 
+                      Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged" Margin="30 0 0 0">
                 <TextBlock>2019</TextBlock>
                 <TextBlock>2020</TextBlock>
                 <TextBlock>2021</TextBlock>
                 <TextBlock>2022</TextBlock>
             </ComboBox>
-            <ComboBox Name="cmbAcademicYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
+            <ComboBox Name="cmbAcademicYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" 
+                      Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
         </StackPanel>
         <DataGrid x:Name="DGridLoads" Grid.Row="2" VerticalAlignment="Top" Margin="10 10 10 50" HorizontalAlignment="Center"
                   RowHeight="90" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
@@ -56,14 +60,16 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnDeleteLoad" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                    Click="btnDeleteLoad_Click" Content="Удалить нагрузку (потом изм)"/>
+                                    Click="btnDeleteLoad_Click" Content="Удалить нагрузку"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="tblResult" Text="Учебный план не найден" FontSize="32" Visibility="Hidden"
-                   VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Margin="150 0 150 0" TextAlignment="Center"/>
-        <Button Grid.Row="3" x:Name="btnAddLoad" Content="Добавить нагрузку" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False" Margin="0 0 10 0" Click="btnAddLoad_Click"/>
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" 
+                   Margin="150 0 150 0" TextAlignment="Center"/>
+        <Button Grid.Row="3" x:Name="btnAddLoad" Content="Добавить нагрузку" VerticalAlignment="Center" 
+                HorizontalAlignment="Right" IsEnabled="False" Margin="0 0 10 0" Click="btnAddLoad_Click"/>
     </Grid>
 </Page>

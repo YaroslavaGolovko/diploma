@@ -166,7 +166,7 @@ namespace CollegeApp.UI.Windows
 
         private void btnAddSubject_Click(object sender, RoutedEventArgs e)
         {
-            WndAddNewSubject window = new WndAddNewSubject();
+            WndAddEditSubject window = new WndAddEditSubject(null);
             window.ShowDialog();
         }
 

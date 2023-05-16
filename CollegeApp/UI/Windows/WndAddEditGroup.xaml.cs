@@ -87,12 +87,14 @@ namespace CollegeApp.UI
                 int number = Int32.Parse(tbNumber.Text.ToString());
                 if (number <= 0)
                 {
-                    MessageBox.Show("Номер группы не может быть отрицательным!", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Номер группы не может быть отрицательным!",
+                        "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 if (startYear <= 0)
                 {
-                    MessageBox.Show("Год набора не может быть отрицательным!", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Год набора не может быть отрицательным!", 
+                        "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 _currentGroup.Number = number;
@@ -104,12 +106,14 @@ namespace CollegeApp.UI
                     CollegeBaseEntities.GetContext().Groups.Add(_currentGroup);
                 }
                 CollegeBaseEntities.GetContext().SaveChanges();
-                MessageBox.Show("Данные успешно сохранены!", "Успешное сохранение", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Данные успешно сохранены!", 
+                    "Успешное сохранение", MessageBoxButton.OK, MessageBoxImage.Error);
                 this.Close();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("При сохранении данных возникли неполадки. Проверьте вводимые данные.", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("При сохранении данных возникли неполадки. Проверьте вводимые данные.", 
+                    "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

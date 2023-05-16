@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollegeApp.UI.Windows"
         mc:Ignorable="d"
-        Title="Документы УМО" Height="400" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Resources/logoICO.ico">
+        Title="Документы УМО" Height="430" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Resources/logoICO.ico">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0">
             <TextBlock x:Name="tblName" Text="Добавление нагрузки" FontSize="30"/>

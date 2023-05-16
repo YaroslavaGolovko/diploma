@@ -136,7 +136,7 @@ namespace CollegeApp.Entities
             return rows;
         }
 
-        public static void SaveRow(DataGrid dataGrid)
+        public static void SaveRows(DataGrid dataGrid)
         {
             List<DocumentRow> rows = dataGrid.ItemsSource as List<DocumentRow>;
             foreach (var row in rows)
@@ -267,7 +267,8 @@ namespace CollegeApp.Entities
             CollegeBaseEntities.GetContext().SaveChanges();
         }
 
-        public static void PrintRows(DataGrid dataGrid, ComboBox cmbSpecialities, ComboBox cmbQualifications, ComboBox cmbStartYear, ComboBox cmbAcademicYear, ComboBox cmbProfessors)
+        public static void PrintRows(DataGrid dataGrid, ComboBox cmbSpecialities, ComboBox cmbQualifications, 
+            ComboBox cmbStartYear, ComboBox cmbAcademicYear, ComboBox cmbProfessors)
         {
             try
             {
@@ -362,7 +363,9 @@ namespace CollegeApp.Entities
                     var row = rows[i];
 
                     cellRange = table.Cell(i + 2, 1).Range;
-                    cellRange.Text = "Дисциплина: " + row.SubjectName + "\r\n" + "Преподаватель: " + row.ProfessorFullName + "\r\n" + "Специальность: " + row.SpecialityId + "\r\n" + "Квалификация: " + row.Qualification + "\r\n" + "Учебный год: " + row.AcademicYear + "\r\n" + "Год набора: " + row.StartYear + "\r\n" + "Семестр: " + row.SemesterVisible;
+                    cellRange.Text = "Дисциплина: " + row.SubjectName + "\r\n" + "Преподаватель: " + row.ProfessorFullName + 
+                        "\r\n" + "Специальность: " + row.SpecialityId + "\r\n" + "Квалификация: " + row.Qualification + "\r\n" + 
+                        "Учебный год: " + row.AcademicYear + "\r\n" + "Год набора: " + row.StartYear + "\r\n" + "Семестр: " + row.SemesterVisible;
                     cellRange.ParagraphFormat.Alignment = word.WdParagraphAlignment.wdAlignParagraphCenter;
 
                     cellRange = table.Cell(i + 2, 2).Range;
@@ -425,7 +428,8 @@ namespace CollegeApp.Entities
             }
             catch
             {
-                MessageBox.Show("При формировании документа возникли неполадки. Повторите попытку позже.", "Ошибка загрузки!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("При формировании документа возникли неполадки. Повторите попытку позже.", 
+                    "Ошибка загрузки!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

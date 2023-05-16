@@ -64,13 +64,18 @@ namespace CollegeApp.UI.Windows
                 int professorId = selectedProfessor.Id;
                 var selectedSubject = cmbSubjects.SelectedItem as SubjectSemester;
                 int subjectId = selectedSubject.SubjectSpeciality.SubjectId;
-                var items = CollegeBaseEntities.GetContext().SubjectProfessors.Where(s => s.SubjectSemester.SubjectSpeciality.SpecialityId == specialityId && s.SubjectSemester.SubjectSpeciality.QualificationId == qualificationId && s.SubjectSemester.Syllabu.Group.StartYear == startYear && s.SubjectSemester.Syllabu.AcademicYear == academicYear && s.SubjectSemester.SubjectSpeciality.SubjectId==subjectId && s.ProfessorId==professorId).ToList();
+                var items = CollegeBaseEntities.GetContext().SubjectProfessors.
+                    Where(s => s.SubjectSemester.SubjectSpeciality.SpecialityId == specialityId 
+                    && s.SubjectSemester.SubjectSpeciality.QualificationId == qualificationId 
+                    && s.SubjectSemester.Syllabu.Group.StartYear == startYear && s.SubjectSemester.Syllabu.AcademicYear 
+                    == academicYear && s.SubjectSemester.SubjectSpeciality.SubjectId==subjectId && s.ProfessorId==professorId).ToList();
                 if (items.Count > 0)
                 {
                     foreach (var item in items)
                     {
                         int subjectProfessorId = item.Id;
-                        if (CollegeBaseEntities.GetContext().Documents.Where(d => d.SubjectProfessorId == subjectProfessorId).FirstOrDefault() == null)
+                        if (CollegeBaseEntities.GetContext().Documents.
+                            Where(d => d.SubjectProfessorId == subjectProfessorId).FirstOrDefault() == null)
                         {
                             Document document = new Document();
                             document.SubjectProfessorId = item.Id;
@@ -81,19 +86,22 @@ namespace CollegeApp.UI.Windows
                         else
                         {
                             isShow = true;
-                            MessageBox.Show("Документ уже добавлен.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Документ уже добавлен.", 
+                                "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         CollegeBaseEntities.GetContext().SaveChanges();
                     }
                     CollegeBaseEntities.GetContext().SaveChanges();
                     if(isShow==false)
-                        MessageBox.Show("Документ успешно добавлен!", "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Документ успешно добавлен!",
+                            "Успешное добавление", MessageBoxButton.OK, MessageBoxImage.Information);
                     btnSave.IsEnabled = false;
                 }
             }
             catch
             {
-                MessageBox.Show("Во время добавления документа произошли неполадки. Повторите попытку позже.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Во время добавления документа произошли неполадки. " +
+                    "Повторите попытку позже.", "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using CollegeApp.Entities;
+using CollegeApp.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,12 @@ namespace CollegeApp.UC
             {
                 MessageBox.Show("При удалении дисциплины возникли неполадки. Проверьте, чтобы по дисциплине отсутствовала нагрузка, и повторите попытку позже.", "Ошибка удаления", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void btnUpdateSubject_Click(object sender, RoutedEventArgs e)
+        {
+            WndAddEditSubject wnd = new WndAddEditSubject((sender as Button).DataContext as Subject);
+            wnd.ShowDialog();
         }
     }
 }

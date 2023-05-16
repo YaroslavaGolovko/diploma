@@ -16,7 +16,8 @@
         <TextBlock FontSize="30" Text="Дисциплины" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
             <Button x:Name="btnAddSubject" Content="Добавить дисциплину" Click="btnAddSubject_Click"/>
-            <Button x:Name="btnAddCategory" Content="Добавить категорию" Click="btnAddCategory_Click" Margin="50 0 0 0"/>
+            <Button x:Name="btnAddCategory" Content="Добавить категорию" Click="btnAddCategory_Click" Margin="30 0 0 0"/>
+            <Button x:Name="btnAddIndex" Content="Добавить индекс" Click="btnAddIndex_Click" Margin="30 0 0 0"/>
         </StackPanel>
         <DataGrid Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" AutoGenerateColumns="False"
                   IsReadOnly="True" CanUserAddRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False"
