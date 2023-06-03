@@ -1,0 +1,247 @@
+﻿<Page x:Class="CollegeApp.UI.Pages.PageDocuments"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CollegeApp.UI.Pages"
+      mc:Ignorable="d" 
+      MinHeight="700" Height="auto" MaxHeight="890">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" MinHeight="430"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Документация" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <ComboBox Name="cmbSpecialities" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите специальность" Foreground="Gray" SelectionChanged="cmbSpecialities_SelectionChanged" DisplayMemberPath="Id"/>
+            <ComboBox Name="cmbQualifications" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите квалификацию" Foreground="Gray" SelectionChanged="cmbQualifications_SelectionChanged" DisplayMemberPath="Name" Margin="30 0 0 0"/>
+            <ComboBox Name="cmbProfessors" Width="200" IsEditable="True" IsReadOnly="True" Text="Выберите преподавателя" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbProfessors_SelectionChanged" DisplayMemberPath="FullName"/>
+        </StackPanel>
+        <DataGrid x:Name="DGridDocuments" Grid.Row="3" VerticalAlignment="Top" Margin="10 10 10 40" HorizontalAlignment="Center"
+                  RowHeight="110" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserReorderColumns="False" CanUserResizeColumns="False" Visibility="Hidden" FontFamily="Cambria">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Преподаватель" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding ProfessorFullName}" FontSize="16"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дисциплина" Width="170">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding SubjectName}" FontSize="16"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Учебный план" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontSize="15">
+                                    <Run Text="Специальность: "/>
+                                    <Run Text="{Binding SpecialityId}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="15">
+                                    <Run Text="Квалификация: "/>
+                                    <Run Text="{Binding Qualification}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="15">
+                                    <Run Text="Год набора: "/>
+                                    <Run Text="{Binding StartYear}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="15">
+                                    <Run Text="Учебный год: "/>
+                                    <Run Text="{Binding AcademicYear}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="15">
+                                    <Run Text="Семестр: "/>
+                                    <Run Text="{Binding SemesterVisible}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="РП (эл. вид)" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <CheckBox HorizontalAlignment="Center" x:Name="cbWPElectronic" Checked="cbWPElectronic_Checked" Unchecked="cbWPElectronic_Unchecked" Content="">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding WorkProgramElectronicIsExist}" Value="True">
+                                                    <Setter Property="IsChecked" Value="True"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding WorkProgramElectronicIsExist}" Value="False">
+                                                    <Setter Property="IsChecked" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                                <TextBox Background="Transparent" x:Name="tbWPElectronic" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbWPElectronic_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding WorkProgramElectronicIsExist}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Setter Property="Text" Value="{Binding WorkProgramElectronicDate, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding WorkProgramElectronicIsExist}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Text" Value=""/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="РП (печат. вид)" Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <CheckBox HorizontalAlignment="Center" x:Name="cbWPTypewriter" Checked="cbWPTypewriter_Checked" Unchecked="cbWPTypewriter_Unchecked" Content="">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding WorkProgramTypewriterIsExist}" Value="True">
+                                                    <Setter Property="IsChecked" Value="True"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding WorkProgramTypewriterIsExist}" Value="False">
+                                                    <Setter Property="IsChecked" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                                <TextBox Background="Transparent" x:Name="tbWPTypewriter" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbWPTypewriter_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding WorkProgramTypewriterIsExist}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Setter Property="Text" Value="{Binding WorkProgramTypewriterDate, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding WorkProgramTypewriterIsExist}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Text" Value=""/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="КТП (эл. вид)" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <CheckBox HorizontalAlignment="Center" x:Name="cbCTPElectronic" Checked="cbCTPElectronic_Checked" Unchecked="cbCTPElectronic_Unchecked" Content="">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanElectronicIsExist}" Value="True">
+                                                    <Setter Property="IsChecked" Value="True"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanElectronicIsExist}" Value="False">
+                                                    <Setter Property="IsChecked" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                                <TextBox Background="Transparent" x:Name="tbCTPElectronic" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbCTPElectronic_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanElectronicIsExist}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Setter Property="Text" Value="{Binding CalendarThematicPlanElectronicDate, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanElectronicIsExist}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Text" Value=""/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="КТП (печат. вид)" Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <CheckBox HorizontalAlignment="Center" x:Name="cbCTPTypewriter" Checked="cbCTPTypewriter_Checked" Unchecked="cbCTPTypewriter_Unchecked" Content="">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanTypewriterIsExist}" Value="True">
+                                                    <Setter Property="IsChecked" Value="True"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanTypewriterIsExist}" Value="False">
+                                                    <Setter Property="IsChecked" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                                <TextBox Background="Transparent" x:Name="tbCTPTypewriter" HorizontalAlignment="Center" FontSize="13" Margin="0 15 0 0" TextChanged="tbCTPTypewriter_TextChanged">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanTypewriterIsExist}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Setter Property="Text" Value="{Binding CalendarThematicPlanTypewriterDate, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding CalendarThematicPlanTypewriterIsExist}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Text" Value=""/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Примечания" Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox x:Name="tbNote" TextChanged="tbNote_TextChanged" TextWrapping="Wrap" Text="{Binding Note}" BorderThickness="1" BorderBrush="LightGray" Padding="5" HorizontalContentAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="4">
+            <Button x:Name="btnPrint" Content="Распечатать" Click="btnPrint_Click" IsEnabled="False"/>
+            <Button x:Name="btnSave" Content="Сохранить изменения" Click="btnSave_Click" Margin="30 0 10 0" IsEnabled="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <ComboBox Name="cmbStartYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите год набора" Foreground="Gray" SelectionChanged="cmbStartYear_SelectionChanged" Margin="30 0 0 0">
+                <TextBlock>2019</TextBlock>
+                <TextBlock>2020</TextBlock>
+                <TextBlock>2021</TextBlock>
+                <TextBlock>2022</TextBlock>
+            </ComboBox>
+            <ComboBox Name="cmbAcademicYear" Width="150" IsEditable="True" IsReadOnly="True" Text="Выберите учебный год" Foreground="Gray" Margin="30 0 0 0" SelectionChanged="cmbAcademicYear_SelectionChanged"/>
+            <Button IsEnabled="False" x:Name="btnAddRow" Grid.Row="3" Content="Добавить документ" Click="btnAddRow_Click" Margin="30 0 0 0"/>
+            <Button IsEnabled="False" x:Name="btnDeleteRow" Grid.Row="3" Content="Удалить документ" Click="btnDeleteRow_Click" Margin="30 0 10 0"/>
+        </StackPanel>
+    </Grid>
+</Page>

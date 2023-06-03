@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using DevExpress.Xpo.DB;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
@@ -268,7 +269,8 @@ namespace CollegeApp.Entities
         }
 
         public static void PrintRows(DataGrid dataGrid, ComboBox cmbSpecialities, ComboBox cmbQualifications, 
-            ComboBox cmbStartYear, ComboBox cmbAcademicYear, ComboBox cmbProfessors)
+            ComboBox cmbStartYear, ComboBox cmbAcademicYear, ComboBox cmbProfessors, bool visibilitySpecilaity,
+            bool visibilityQualification, bool visibilityStartYear, bool visibilityAcademicYear, bool visibilityProfessor)
         {
             try
             {
@@ -343,7 +345,15 @@ namespace CollegeApp.Entities
                 table.Range.Cells.VerticalAlignment = word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
                 word.Range cellRange;
                 cellRange = table.Cell(1, 1).Range;
-                cellRange.Text = "Дисциплина, преподаватель, учебный план";
+                cellRange.Text = "Дисциплина";
+                if (visibilityProfessor == true)
+                {
+                    cellRange.Text +="преподаватель";
+                }
+                if (visibilityAcademicYear == true)
+                {
+                    cellRange.Text += "учебный план";
+                }
                 cellRange = table.Cell(1, 2).Range;
                 cellRange.Text = "РП (эл. вид)";
                 cellRange = table.Cell(1, 3).Range;
@@ -363,9 +373,28 @@ namespace CollegeApp.Entities
                     var row = rows[i];
 
                     cellRange = table.Cell(i + 2, 1).Range;
-                    cellRange.Text = "Дисциплина: " + row.SubjectName + "\r\n" + "Преподаватель: " + row.ProfessorFullName + 
-                        "\r\n" + "Специальность: " + row.SpecialityId + "\r\n" + "Квалификация: " + row.Qualification + "\r\n" + 
-                        "Учебный год: " + row.AcademicYear + "\r\n" + "Год набора: " + row.StartYear + "\r\n" + "Семестр: " + row.SemesterVisible;
+                    cellRange.Text = "Дисциплина: " + row.SubjectName + "\r\n";
+                    if (visibilityProfessor == true)
+                    {
+                        cellRange.Text += "Преподаватель: " + row.ProfessorFullName + "\r\n";
+                    }
+                    if (visibilitySpecilaity == true)
+                    {
+                        cellRange.Text += "Специальность: " + row.SpecialityId + "\r\n";
+                    }
+                    if(visibilityQualification == true)
+                    {
+                        cellRange.Text += "Квалификация: " + row.Qualification + "\r\n";
+                    }
+                    if (visibilityAcademicYear == true)
+                    {
+                        cellRange.Text += "Учебный год: " + row.AcademicYear + "\r\n";
+                        cellRange.Text += "Семестр: " + row.SemesterVisible + "\r\n";
+                    }
+                    if (visibilityStartYear == true)
+                    {
+                        cellRange.Text+= "Год набора: " + row.StartYear + "\r\n";
+                    }
                     cellRange.ParagraphFormat.Alignment = word.WdParagraphAlignment.wdAlignParagraphCenter;
 
                     cellRange = table.Cell(i + 2, 2).Range;

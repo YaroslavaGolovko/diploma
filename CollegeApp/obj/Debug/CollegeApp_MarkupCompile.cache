@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\диплом\CollegeApp\CollegeApp\App.xaml
-201148683973
+212106009862
 2-1206121805
-55-1596944215
+561380240540
 24-1238947040
-UC\UCMenuItem.xaml;UC\UCSubject.xaml;UI\Pages\PageDocuments.xaml;UI\Pages\PageGroups.xaml;UI\Pages\PageLoads.xaml;UI\Pages\PagePlans.xaml;UI\Pages\PageProfessors.xaml;UI\Pages\PageSubjects.xaml;UI\Windows\WndAddEditGroup.xaml;UI\Windows\WndAddEditLoad.xaml;UI\Windows\WndAddEditProfessor.xaml;UI\Windows\WndAddNewCategory.xaml;UI\Windows\WndAddNewDocument.xaml;UI\Windows\WndAddNewIndex.xaml;UI\Windows\WndAddNewLoad.xaml;UI\Windows\WndAddEditSubject.xaml;UI\Windows\WndAddPlan.xaml;UI\Windows\WndAddSubject.xaml;UI\Windows\WndStart.xaml;UI\Windows\WndWork.xaml;
+UC\UCMenuItem.xaml;UC\UCSubject.xaml;UI\Pgs\PageDocuments.xaml;UI\Pgs\PageGroups.xaml;UI\Pgs\PageLoads.xaml;UI\Pgs\PagePlans.xaml;UI\Pgs\PageProfessors.xaml;UI\Pgs\PageSubjects.xaml;UI\Wnds\WndAddEditGroup.xaml;UI\Wnds\WndAddEditLoad.xaml;UI\Wnds\WndAddEditProfessor.xaml;UI\Wnds\WndAddNewCategory.xaml;UI\Wnds\WndAddNewDocument.xaml;UI\Wnds\WndAddNewIndex.xaml;UI\Wnds\WndAddNewLoad.xaml;UI\Wnds\WndAddEditSubject.xaml;UI\Wnds\WndAddPlan.xaml;UI\Wnds\WndAddSubject.xaml;UI\Wnds\WndCustomizeAttributes.xaml;UI\Wnds\WndStart.xaml;UI\Wnds\WndWork.xaml;
 
 False
 

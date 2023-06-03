@@ -1,0 +1,38 @@
+﻿<Window x:Class="CollegeApp.WndStart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollegeApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Документы УМО" Height="470" Width="550" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Resources/logoICO.ico">
+    <Grid>
+        <materialDesign:ColorZone Background="{StaticResource DarkMainColor}" HorizontalAlignment="Stretch">
+            <StackPanel Height="470" Orientation="Vertical" HorizontalAlignment="Center">
+                <StackPanel Height="100" Orientation="Horizontal" Margin="0 0 0 25" Background="White" Width="550">
+                    <Image Source="/Resources/logoDoc.png" Stretch="Uniform"/>
+                    <TextBlock FontFamily="Cambria" FontSize="34" Text="Документы УМО" Margin="50 0 0 0" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                </StackPanel>
+                <Border Style="{StaticResource StyleRoundedBorder}" Padding="15" Margin="15 10 15 15" Width="340">
+                    <StackPanel Height="auto" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Foreground="White" Text="Авторизация" FontFamily="Cambria" FontSize="24" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="tbLogin" Style="{StaticResource StyleTextBoxLogin}" Margin="0 20 0 30"/>
+                        <Grid>
+                            <PasswordBox PasswordChanged="pbPassword_PasswordChanged" x:Name="pbPassword" Style="{StaticResource StylePasswordBoxPassword}"/>
+                            <TextBox x:Name="tbPassword" Style="{StaticResource StyleTextBoxPassword}" Visibility="Hidden"/>
+                            <Label Name="labelHint" Content="Введите пароль" FontFamily="Cambria" FontSize="16" Foreground="LightGray" VerticalAlignment="Center" Margin="1 0 0 0" Width="auto"/>
+                            <Button Style="{StaticResource StyleButtonImage}" x:Name="btnShowPassword" HorizontalAlignment="Right" Width="35" Height="35" Background="Transparent" Padding="6 6 3 6" BorderBrush="Transparent" Click="btnShowPassword_Click">
+                                <Image x:Name="imageOpenedEye" Source="/Resources/eye.png" Opacity="0.3"/>
+                            </Button>
+                            <Button Style="{StaticResource StyleButtonImage}" x:Name="btnHidePassword" HorizontalAlignment="Right" Width="35" Height="35" Background="Transparent" Padding="6 6 3 6" BorderBrush="Transparent" Visibility="Hidden" Click="btnHidePassword_Click">
+                                <Image x:Name="imageClosedEye" Source="/Resources/eyeClosed.png" Opacity="0.3"/>
+                            </Button>
+                        </Grid>
+                        <Button x:Name="btnEnter" Content="Войти" Margin="0 30 0 10" Click="btnEnter_Click"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</Window>

@@ -176,55 +176,58 @@
     <Compile Include="UC\UCSubject.xaml.cs">
       <DependentUpon>UCSubject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageDocuments.xaml.cs">
+    <Compile Include="UI\Pgs\PageDocuments.xaml.cs">
       <DependentUpon>PageDocuments.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageGroups.xaml.cs">
+    <Compile Include="UI\Pgs\PageGroups.xaml.cs">
       <DependentUpon>PageGroups.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageLoads.xaml.cs">
+    <Compile Include="UI\Pgs\PageLoads.xaml.cs">
       <DependentUpon>PageLoads.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PagePlans.xaml.cs">
+    <Compile Include="UI\Pgs\PagePlans.xaml.cs">
       <DependentUpon>PagePlans.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageProfessors.xaml.cs">
+    <Compile Include="UI\Pgs\PageProfessors.xaml.cs">
       <DependentUpon>PageProfessors.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageSubjects.xaml.cs">
+    <Compile Include="UI\Pgs\PageSubjects.xaml.cs">
       <DependentUpon>PageSubjects.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddEditGroup.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddEditGroup.xaml.cs">
       <DependentUpon>WndAddEditGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddEditLoad.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddEditLoad.xaml.cs">
       <DependentUpon>WndAddEditLoad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddEditProfessor.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddEditProfessor.xaml.cs">
       <DependentUpon>WndAddEditProfessor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddNewCategory.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddNewCategory.xaml.cs">
       <DependentUpon>WndAddNewCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddNewDocument.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddNewDocument.xaml.cs">
       <DependentUpon>WndAddNewDocument.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddNewIndex.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddNewIndex.xaml.cs">
       <DependentUpon>WndAddNewIndex.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddNewLoad.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddNewLoad.xaml.cs">
       <DependentUpon>WndAddNewLoad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddEditSubject.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddEditSubject.xaml.cs">
       <DependentUpon>WndAddEditSubject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddPlan.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddPlan.xaml.cs">
       <DependentUpon>WndAddPlan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndAddSubject.xaml.cs">
+    <Compile Include="UI\Wnds\WndAddSubject.xaml.cs">
       <DependentUpon>WndAddSubject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WndWork.xaml.cs">
+    <Compile Include="UI\Wnds\WndCustomizeAttributes.xaml.cs">
+      <DependentUpon>WndCustomizeAttributes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Wnds\WndWork.xaml.cs">
       <DependentUpon>WndWork.xaml</DependentUpon>
     </Compile>
     <Page Include="UC\UCMenuItem.xaml">
@@ -235,71 +238,75 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PageDocuments.xaml">
+    <Page Include="UI\Pgs\PageDocuments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PageGroups.xaml">
+    <Page Include="UI\Pgs\PageGroups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PageLoads.xaml">
+    <Page Include="UI\Pgs\PageLoads.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PagePlans.xaml">
+    <Page Include="UI\Pgs\PagePlans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PageProfessors.xaml">
+    <Page Include="UI\Pgs\PageProfessors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\PageSubjects.xaml">
+    <Page Include="UI\Pgs\PageSubjects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddEditGroup.xaml">
+    <Page Include="UI\Wnds\WndAddEditGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddEditLoad.xaml">
+    <Page Include="UI\Wnds\WndAddEditLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddEditProfessor.xaml">
+    <Page Include="UI\Wnds\WndAddEditProfessor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddNewCategory.xaml">
+    <Page Include="UI\Wnds\WndAddNewCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddNewDocument.xaml">
+    <Page Include="UI\Wnds\WndAddNewDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddNewIndex.xaml">
+    <Page Include="UI\Wnds\WndAddNewIndex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddNewLoad.xaml">
+    <Page Include="UI\Wnds\WndAddNewLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddEditSubject.xaml">
+    <Page Include="UI\Wnds\WndAddEditSubject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddPlan.xaml">
+    <Page Include="UI\Wnds\WndAddPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndAddSubject.xaml">
+    <Page Include="UI\Wnds\WndAddSubject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\WndStart.xaml">
+    <Page Include="UI\Wnds\WndCustomizeAttributes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Wnds\WndStart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -307,11 +314,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI\Windows\WndStart.xaml.cs">
+    <Compile Include="UI\Wnds\WndStart.xaml.cs">
       <DependentUpon>WndStart.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\Windows\WndWork.xaml">
+    <Page Include="UI\Wnds\WndWork.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

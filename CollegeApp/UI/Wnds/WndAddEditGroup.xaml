@@ -1,0 +1,22 @@
+﻿<Window x:Class="CollegeApp.UI.WndAddEditGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollegeApp.UI"
+        mc:Ignorable="d"
+        Title="Документы УМО" Height="500" Width="500" Icon="/Resources/logoICO.ico" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="tblName" Text="Добавление группы" FontSize="30" Margin="0 10 0 0"/>
+            <TextBox x:Name="tbNumber" Text="{Binding Number}" Style="{StaticResource StyleTextBoxNumberGroup}" Margin="0 30 0 0" TextChanged="tbNumber_TextChanged"/>
+            <ComboBox Name="cmbSpesialities" SelectionChanged="cmbSpesialities_SelectionChanged" Text="Выберите специальность"
+                      IsEditable="True" IsReadOnly="True" Foreground="Gray" Width="250" Margin="0 30 0 0" DisplayMemberPath="Id"/>
+            <ComboBox Name="cmbQualifications" Margin="0 30 0 0" Text="Выберите квалификацию" IsReadOnly="True" IsEditable="True"
+                      SelectionChanged="cmbQualifications_SelectionChanged" Width="250" Foreground="Gray" DisplayMemberPath="Name"/>
+            <TextBox x:Name="tbStartYear" Text="{Binding StartYear}" Style="{StaticResource StyleTextBoxStartYear}" Margin="0 30 0 0" TextChanged="tbStartYear_TextChanged"/>
+            <Button x:Name="btnSave" Content="Сохранить" Margin="0 30 0 0" Click="btnSave_Click" IsEnabled="False"/>
+            <Button x:Name="btnClose" Content="Выйти" Margin="0 30 0 30" Click="btnClose_Click"/>
+        </StackPanel>   
+    </Grid>
+</Window>

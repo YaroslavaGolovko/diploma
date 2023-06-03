@@ -15,6 +15,13 @@ namespace CollegeApp.Classes
         public static Syllabu _currentPlan { get; set; }
         public static DataGrid DGridSubjects { get; set; }
 
+        public static DataGrid DGridDocumentRow { get; set; }
+        public static ComboBox cmbSpecialityDocumentRow { get; set; }
+        public static ComboBox cmbQualificationDocumentRow { get; set; }
+        public static ComboBox cmbAcademicYearDocumentRow { get; set; }
+        public static ComboBox cmbStartYearDocumentRow { get; set; }
+        public static ComboBox cmbProfessorDocumentRow { get; set; }
+
         public static bool CheckEnter(string login, string password)
         {
             _currentUser = CollegeBaseEntities.GetContext().Users.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
